@@ -1,0 +1,49 @@
+.constructorConteiner {
+  margin-top: 100px; /*должен быть 100px */
+  width: 600px;
+  height: 912px;
+  height: 820px;
+}
+
+.listInternalConteiner {
+  margin: 0;
+  padding-left: 0;
+  list-style-type: none;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  overflow-y: scroll;
+  overflow-x: hidden;
+  height: 464px;
+}
+
+.item {
+  display: flex;
+  align-items: center;
+}
+
+.priceConteiner {
+  margin: 40px auto 52px auto;
+  width: 568px;
+  height: 64px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: end;
+}
+
+.textSum {
+  text-align: right;
+  font-family: Iceland;
+  font-size: 48px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 36px;
+}
+
+.cont {
+  margin-right: 40px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}

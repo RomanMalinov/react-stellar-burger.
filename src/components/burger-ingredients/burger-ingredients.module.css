@@ -1,0 +1,78 @@
+.ingredientsConteiner {
+  width: 600px;
+  height: 912px;
+}
+
+.ingredientsTitle {
+  margin: 40px 0 20px 0;
+  font-family: JetBrains Mono;
+  font-size: 36px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: 40px;
+}
+
+.ingredient {
+  width: 272px;
+  height: 208px;
+}
+
+.scrollContainer {
+  position: relative;
+  overflow-y: scroll;
+  overflow-x: hidden;
+  height: 664px;
+}
+
+.IngregientConteiner {
+  width: 272px;
+  height: 208px;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+}
+
+.img {
+  width: 240px;
+  height: 120px;
+}
+
+.priceConteiner {
+  display: flex;
+  height: 20px;
+  justify-content: center;
+  align-items: center;
+  gap: 8px;
+  font-family: Iceland;
+  font-size: 28px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 24px;
+}
+
+.imgText {
+  margin: 0;
+  font-family: JetBrains Mono;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 24px;
+}
+
+.list {
+  list-style: none;
+  padding: 0;
+  margin-left: 16px;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+}
+
+.subTitel {
+  font-family: JetBrains Mono;
+  font-size: 24px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: 30px;
+}
