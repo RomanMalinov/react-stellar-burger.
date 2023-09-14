@@ -5,7 +5,7 @@ import ingredientPropType from "../../utils/prop-types";
 const IngredientSection = ({ title, children }) => {
   return (
     <div>
-      <h3 className={styles.subTitel}>{title}</h3>
+      <h3 className={`${styles.subTitel} text text_type_main-medium`}>{title}</h3>
       <ul className={styles.list}>{children}</ul>
     </div>
   );

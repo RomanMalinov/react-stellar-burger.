@@ -10,7 +10,7 @@ const FinalPrice = ({ sum }) => {
   return (
     <section className={styles.priceConteiner}>
       <div className={styles.cont}>
-        <p className={styles.textSum}>{sum}</p>
+        <p className={`${styles.textSum} text text_type_digits-medium`}>{sum}</p>
         <CurrencyIcon type="primary" />
       </div>
       <Button

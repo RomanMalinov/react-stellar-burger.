@@ -5,11 +5,11 @@
 
 .ingredientsTitle {
   margin: 40px 0 20px 0;
-  font-family: JetBrains Mono;
+  /* font-family: JetBrains Mono;
   font-size: 36px;
   font-style: normal;
   font-weight: 700;
-  line-height: 40px;
+  line-height: 40px; */
 }
 
 .ingredient {
@@ -45,20 +45,20 @@
   justify-content: center;
   align-items: center;
   gap: 8px;
-  font-family: Iceland;
+  /* font-family: Iceland;
   font-size: 28px;
   font-style: normal;
   font-weight: 400;
-  line-height: 24px;
+  line-height: 24px; */
 }
 
 .imgText {
   margin: 0;
-  font-family: JetBrains Mono;
+  /* font-family: JetBrains Mono;
   font-size: 16px;
   font-style: normal;
   font-weight: 400;
-  line-height: 24px;
+  line-height: 24px;*/
 }
 
 .list {
@@ -70,9 +70,14 @@
 }
 
 .subTitel {
-  font-family: JetBrains Mono;
+  /* font-family: JetBrains Mono;
   font-size: 24px;
   font-style: normal;
   font-weight: 700;
-  line-height: 30px;
+  line-height: 30px;*/
+  margin-top: 40px;
+}
+
+.tab {
+  display: flex;
 }

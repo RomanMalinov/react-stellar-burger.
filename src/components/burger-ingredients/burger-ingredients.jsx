@@ -5,7 +5,7 @@ import styles from "./burger-ingredients.module.css";
 const BurgerIngredients = () => {
   return (
     <section className={styles.ingredientsConteiner}>
-      <h2 className={styles.ingredientsTitle}>Соберите бургер</h2>
+      <h2 className={`${styles.ingredientsTitle} text text_type_main-large`}>Соберите бургер</h2>
       <div>
         <BurgerTab />
         <BurgerList />

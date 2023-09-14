@@ -5,6 +5,13 @@
   height: 820px;
 }
 
+.elementsConteiner {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  align-items: center;
+}
+
 .listInternalConteiner {
   margin: 0;
   padding-left: 0;
@@ -32,14 +39,15 @@
   justify-content: end;
 }
 
-.textSum {
+/* .textSum {
+  outline: 2px red solid;
   text-align: right;
   font-family: Iceland;
   font-size: 48px;
   font-style: normal;
   font-weight: 400;
   line-height: 36px;
-}
+} */
 
 .cont {
   margin-right: 40px;

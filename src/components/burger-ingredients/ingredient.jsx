@@ -12,10 +12,10 @@ const Ingredient = ({ props }) => {
       <Counter count={1} size="default" classname="counter" />
       <img className={styles.img} src={props.image} alt={props.name}></img>
       <div className={styles.priceConteiner}>
-        <p className={styles}>{props.price}</p>
+        <p className={`text text_type_digits-default`}>{props.price}</p>
         <CurrencyIcon type="primary" />
       </div>
-      <p className={styles.imgText}>{props.name}</p>
+      <p className={`${styles.imgText} text text_type_main-small`}>{props.name}</p>
     </div>
   );
 };

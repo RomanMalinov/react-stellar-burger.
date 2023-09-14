@@ -11,7 +11,7 @@ const BurgerConstructor = () => {
 
   return (
     <section className={styles.constructorConteiner}>
-      <div style={{ display: "flex", flexDirection: "column", gap: "16px", alignItems: "center", }}>
+      <div className={styles.elementsConteiner}>
         <ConstructorElement
           type="top"
           isLocked={true}
