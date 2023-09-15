@@ -1,15 +1,20 @@
+import React from 'react';
 import Ingredient from "./ingredient";
 import styles from "./burger-ingredients.module.css";
 import data from "../../utils/data";
 import IngredientSection from "./ingredient-section";
 
-function BurgerList({}) {
-  const sortIngredient = listIngredient(data);
+function BurgerList({ ingredients }) {
+  console.log(ingredients)
+  if (!ingredients || ingredients.length === 0) {
+    return <p>Ожидается загрузка данных</p>;
+  }
+  const sortIngredient = listIngredient(ingredients);
   return (
     <div className={`${styles.scrollContainer} custom-scroll`}>
       <IngredientSection title="Булки">
         {sortIngredient.buns}
-        </IngredientSection>
+      </IngredientSection>
       <IngredientSection title="Соусы">
         {sortIngredient.sauces}
       </IngredientSection>

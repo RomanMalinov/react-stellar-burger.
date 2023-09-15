@@ -20,4 +20,3 @@ const BurgerTab = () => {
 };
 
 export default BurgerTab;
-

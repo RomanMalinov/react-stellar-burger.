@@ -2,13 +2,15 @@ import BurgerTab from "./burger-tab";
 import BurgerList from "./burger-list";
 import styles from "./burger-ingredients.module.css";
 
-const BurgerIngredients = () => {
+const BurgerIngredients = ({ ingredients }) => {
   return (
     <section className={styles.ingredientsConteiner}>
-      <h2 className={`${styles.ingredientsTitle} text text_type_main-large`}>Соберите бургер</h2>
+      <h2 className={`${styles.ingredientsTitle} text text_type_main-large`}>
+        Соберите бургер
+      </h2>
       <div>
         <BurgerTab />
-        <BurgerList />
+        <BurgerList ingredients={ingredients} />
       </div>
     </section>
   );

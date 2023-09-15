@@ -15,7 +15,9 @@ const Ingredient = ({ props }) => {
         <p className={`text text_type_digits-default`}>{props.price}</p>
         <CurrencyIcon type="primary" />
       </div>
-      <p className={`${styles.imgText} text text_type_main-small`}>{props.name}</p>
+      <p className={`${styles.imgText} text text_type_main-small`}>
+        {props.name}
+      </p>
     </div>
   );
 };
