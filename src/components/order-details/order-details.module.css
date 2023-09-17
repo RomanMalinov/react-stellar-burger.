@@ -1,1 +1,29 @@
+.conteiner {
+  width: 640px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
 
+.id {
+  margin-top: 120px;
+}
+
+.title {
+  margin-top: 32px;
+}
+
+.img {
+  margin: 60px auto 60px auto;
+  width: 120px;
+  height: 120px;
+  background-image: url("../../images/order_img.svg");
+}
+
+.textOrder {
+  margin: 0 0 8px 0;
+}
+
+.textTime {
+  margin-bottom: 120px;
+}

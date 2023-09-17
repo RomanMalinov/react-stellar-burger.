@@ -1,3 +1,4 @@
+import { useState } from "react";
 import styles from "./burger-constructor.module.css";
 import {
   ConstructorElement,
@@ -15,6 +16,7 @@ const ListInternalElements = ({ data }) => {
           text={item.name}
           price={item.price}
           thumbnail={item.image}
+
         />
       </li>
     );

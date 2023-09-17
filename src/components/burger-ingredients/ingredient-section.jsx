@@ -1,6 +1,8 @@
 import styles from "./burger-ingredients.module.css";
 import PropTypes from "prop-types";
 import ingredientPropType from "../../utils/prop-types";
+import Modal from '../modals/modals';
+import IngredientDetails from '../inrredient-details/inrredient-details';
 
 const IngredientSection = ({ title, children }) => {
   return (
@@ -18,3 +20,5 @@ IngredientSection.propTypes = {
   children: PropTypes.node.isRequired,
 };
 export default IngredientSection;
+
+

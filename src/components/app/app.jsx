@@ -5,6 +5,10 @@ import BurgerIngredients from "../burger-ingredients/burger-ingredients";
 import BurgerConstructor from "../burger-constructor/burger-constructor";
 import { getIngredients } from "../../utils/api";
 
+// import OrderDetails from "../order-details/order-details";
+// import IngredientDetails from "../inrredient-details/inrredient-details";
+
+
 function App() {
   const [ingredients, setIngredients] = useState([]);
 
@@ -25,7 +29,10 @@ function App() {
         <BurgerIngredients ingredients={ingredients} />
         <BurgerConstructor ingredients={ingredients} />
       </main>
+      {/* <OrderDetails />
+      <IngredientDetails /> */}
     </div>
+
   );
 }
 

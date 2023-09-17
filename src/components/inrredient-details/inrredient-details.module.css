@@ -1,0 +1,28 @@
+.conteiner {
+  width: 440px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 0;
+}
+
+.title {
+  margin: 40px 0 0 0;
+  align-self: flex-start;
+}
+
+.img {
+  width: 480px;
+  height: 240px;
+  margin: 16px auto 30px auto;
+}
+
+.conteinerNutritions {
+  margin: 32px auto 60px auto;
+  width: 516px;
+  height: 56px;
+  display: flex;
+  gap: 20px;
+  justify-content: center;
+  text-align: center;
+}

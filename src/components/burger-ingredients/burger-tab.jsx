@@ -1,6 +1,8 @@
 import React from "react";
 import { Tab } from "@ya.praktikum/react-developer-burger-ui-components";
 import styles from "./burger-ingredients.module.css";
+import Modal from "../modals/modals";
+import IngredientDetails from "../inrredient-details/inrredient-details";
 
 const BurgerTab = () => {
   const [current, setCurrent] = React.useState("one");
