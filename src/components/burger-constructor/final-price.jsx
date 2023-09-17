@@ -46,4 +46,3 @@ FinalPrice.propTypes = {
 };
 
 export default FinalPrice;
-//1

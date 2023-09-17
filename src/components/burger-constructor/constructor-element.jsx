@@ -16,7 +16,6 @@ const ListInternalElements = ({ data }) => {
           text={item.name}
           price={item.price}
           thumbnail={item.image}
-
         />
       </li>
     );
@@ -25,6 +24,6 @@ const ListInternalElements = ({ data }) => {
 
 ListInternalElements.propTypes = {
   data: PropTypes.arrayOf(ingredientPropType).isRequired,
-  };
+};
 
 export default ListInternalElements;

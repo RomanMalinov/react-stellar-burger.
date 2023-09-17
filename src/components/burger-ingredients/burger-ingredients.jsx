@@ -1,9 +1,9 @@
-import React from 'react';
+import React from "react";
 import BurgerTab from "./burger-tab";
 import BurgerList from "./burger-list";
 import styles from "./burger-ingredients.module.css";
-import Modal from '../modals/modals';
-import IngredientDetails from '../inrredient-details/inrredient-details';
+import Modal from "../modals/modals";
+import IngredientDetails from "../inrredient-details/inrredient-details";
 
 const BurgerIngredients = ({ ingredients }) => {
   return (
