@@ -3,7 +3,7 @@ import BurgerTab from "./burger-tab";
 import BurgerList from "./burger-list";
 import styles from "./burger-ingredients.module.css";
 import Modal from "../modals/modals";
-import IngredientDetails from "../inrredient-details/inrredient-details";
+import IngredientDetails from "../inrredient-details/inredient-details";
 
 const BurgerIngredients = ({ ingredients }) => {
   return (

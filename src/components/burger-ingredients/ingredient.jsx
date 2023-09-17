@@ -7,9 +7,9 @@ import styles from "./burger-ingredients.module.css";
 import PropTypes from "prop-types";
 import ingredientPropType from "../../utils/prop-types";
 import Modal from "../modals/modals";
-import IngredientDetails from "../inrredient-details/inrredient-details";
+import IngredientDetails from "../inrredient-details/inredient-details";
 
-const Ingredient = ({ props }) => {
+const Ingredient = ({ ingredient }) => {
   const [isModalOpen, setIsModalOpen] = useState(false);
 
   const openModal = () => {
@@ -25,20 +25,20 @@ const Ingredient = ({ props }) => {
       <Counter count={1} size="default" className="counter" />
       <img
         className={styles.img}
-        src={props.image}
-        alt={props.name}
+        src={ingredient.image}
+        alt={ingredient.name}
         onClick={openModal}
       />
       <div className={styles.priceConteiner} onClick={openModal}>
-        <p className={`text text_type_digits-default`}>{props.price}</p>
+        <p className={`text text_type_digits-default`}>{ingredient.price}</p>
         <CurrencyIcon type="primary" />
       </div>
       <p className={`${styles.imgText} text text_type_main-small`}>
-        {props.name}
+        {ingredient.name}
       </p>
       {isModalOpen && (
         <Modal handleClose={closeModal}>
-          <IngredientDetails ingredient={props} />
+          <IngredientDetails ingredient={ingredient} />
         </Modal>
       )}
     </section>
@@ -46,7 +46,7 @@ const Ingredient = ({ props }) => {
 };
 
 Ingredient.propTypes = {
-  props: ingredientPropType.isRequired,
+  ingredient: ingredientPropType.isRequired,
 };
 
 export default Ingredient;

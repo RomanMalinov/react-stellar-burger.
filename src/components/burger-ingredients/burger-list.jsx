@@ -4,7 +4,7 @@ import styles from "./burger-ingredients.module.css";
 import data from "../../utils/data";
 import IngredientSection from "./ingredient-section";
 import Modal from '../modals/modals';
-import IngredientDetails from '../inrredient-details/inrredient-details';
+import IngredientDetails from '../inrredient-details/inredient-details';
 
 function BurgerList({ ingredients }) {
 
@@ -36,7 +36,7 @@ function listIngredient(data) {
   const sauces = [];
 
   data.forEach((element) => {
-    const ingredientCard = <Ingredient key={element._id} props={element} />;
+    const ingredientCard = <Ingredient key={element._id} ingredient={element} />;
     if (element.type === "main") {
       mains.push(ingredientCard);
     } else if (element.type === "bun") {

@@ -7,7 +7,7 @@ import styles from "./burger-constructor.module.css";
 import PropTypes from "prop-types";
 import ingredientPropType from "../../utils/prop-types";
 import Modal from "../modals/modals";
-import OrderDetailst from "../order-details/order-details";
+import OrderDetails from "../order-details/order-details";
 
 const FinalPrice = ({ sum }) => {
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -34,7 +34,7 @@ const FinalPrice = ({ sum }) => {
       </Button>
       {isModalOpen && (
         <Modal handleClose={handleCloseModal}>
-          <OrderDetailst />
+          <OrderDetails />
         </Modal>
       )}
     </section>
