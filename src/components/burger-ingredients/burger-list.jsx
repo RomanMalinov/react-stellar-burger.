@@ -1,15 +1,8 @@
-import React from 'react';
 import Ingredient from "./ingredient";
 import styles from "./burger-ingredients.module.css";
-import data from "../../utils/data";
 import IngredientSection from "./ingredient-section";
-import Modal from '../modals/modals';
-import IngredientDetails from '../inrredient-details/inredient-details';
 
 function BurgerList({ ingredients }) {
-
-
-
   console.log(ingredients)
   if (!ingredients || ingredients.length === 0) {
     return <p>Ожидается загрузка данных</p>;

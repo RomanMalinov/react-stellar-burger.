@@ -1,12 +1,13 @@
-import { useState } from "react";
-
+//  import React, { useContext } from "react";
+// import { ConstructorContext } from "../../services/context";
 import styles from "./burger-constructor.module.css";
 import { ConstructorElement } from "@ya.praktikum/react-developer-burger-ui-components";
 import ListInternalElements from "./constructor-element.jsx";
 import FinalPrice from "./final-price.jsx";
-import Ingredient from "../burger-ingredients/ingredient";
+
 
 const BurgerConstructor = ({ ingredients }) => {
+  // const {} = useContext(ConstructorContext)
   console.log(ingredients);
   if (!ingredients || ingredients.length === 0) {
     return <p>Ожидается загрузка данных</p>;
