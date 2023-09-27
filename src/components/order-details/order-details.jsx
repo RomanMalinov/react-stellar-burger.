@@ -1,9 +1,13 @@
+import { useContext } from "react";
 import styles from "./order-details.module.css";
-
+import { OrderContext } from "../../services/context";
 const OrderDetails = () => {
+  const { orderNumber } = useContext(OrderContext);
   return (
     <section className={`${styles.conteiner}`}>
-      <h3 className={`${styles.id} text text_type_digits-large`}>034536</h3>
+      <h3 className={`${styles.id} text text_type_digits-large`}>
+        {orderNumber}
+      </h3>
       <p className={`${styles.title} text text_type_main-medium`}>
         идентификатор заказа
       </p>

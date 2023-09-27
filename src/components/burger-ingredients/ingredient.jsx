@@ -1,4 +1,4 @@
-import React, { useState, useContext } from "react";
+import { useState } from "react";
 import {
   Counter,
   CurrencyIcon,
@@ -11,7 +11,6 @@ import { IngredientsContext } from "../../services/context";
 
 const Ingredient = ({ ingredient }) => {
   const [isModalOpen, setIsModalOpen] = useState(false);
-  const ingredients = useContext(IngredientsContext);
 
   const openModal = () => {
     setIsModalOpen(true);

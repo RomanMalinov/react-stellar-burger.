@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import { useContext } from "react";
 import BurgerTab from "./burger-tab";
 import BurgerList from "./burger-list";
 import styles from "./burger-ingredients.module.css";

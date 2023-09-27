@@ -5,11 +5,10 @@ import {
 } from "@ya.praktikum/react-developer-burger-ui-components";
 import styles from "./burger-constructor.module.css";
 import PropTypes from "prop-types";
-import ingredientPropType from "../../utils/prop-types";
 import Modal from "../modals/modals";
 import OrderDetails from "../order-details/order-details";
 
-const FinalPrice = ({ sum }) => {
+const FinalPrice = ({ sum, onOrderClick }) => {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const handleOpenModal = () => setIsModalOpen(true);
   const handleCloseModal = () => setIsModalOpen(false);
@@ -28,7 +27,10 @@ const FinalPrice = ({ sum }) => {
         size="large"
         width="36px"
         height="36px"
-        onClick={handleOpenModal}
+        onClick={() => {
+          onOrderClick();
+          handleOpenModal();
+        }}
       >
         Оформить заказ
       </Button>
