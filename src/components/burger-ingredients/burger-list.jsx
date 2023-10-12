@@ -1,49 +1,28 @@
 import Ingredient from "./ingredient";
 import styles from "./burger-ingredients.module.css";
 import IngredientSection from "./ingredient-section";
+import { useSelector } from "react-redux";
 
-function BurgerList({ ingredients }) {
-  console.log(ingredients)
+const BurgerList = ({ type }) => {
+  const ingredients = useSelector((state) => state.ingredients.ingredients);
+
   if (!ingredients || ingredients.length === 0) {
     return <p>Ожидается загрузка данных</p>;
   }
-  const sortIngredient = listIngredient(ingredients);
-  return (
-    <div className={`${styles.scrollContainer} custom-scroll`}>
-      <IngredientSection title="Булки">
-        {sortIngredient.buns}
-      </IngredientSection>
-      <IngredientSection title="Соусы">
-        {sortIngredient.sauces}
-      </IngredientSection>
-      <IngredientSection title="Начинки">
-        {sortIngredient.mains}
-      </IngredientSection>
-    </div>
+
+  const filteredIngredients = ingredients.filter(
+    (ingredient) => ingredient.type === type
   );
-}
 
-function listIngredient(data) {
-  const buns = [];
-  const mains = [];
-  const sauces = [];
-
-  data.forEach((element) => {
-    const ingredientCard = <Ingredient key={element._id} ingredient={element} />;
-    if (element.type === "main") {
-      mains.push(ingredientCard);
-    } else if (element.type === "bun") {
-      buns.push(ingredientCard);
-    } else if (element.type === "sauce") {
-      sauces.push(ingredientCard);
-    }
-  });
-  const sortIngredient = {
-    mains: mains,
-    buns: buns,
-    sauces: sauces,
-  };
-  return sortIngredient;
-}
+  return (
+    <IngredientSection
+      title={type === "bun" ? "Булки" : type === "sauce" ? "Соусы" : "Начинки"}
+    >
+      {filteredIngredients.map((ingredient) => (
+        <Ingredient key={ingredient._id} ingredient={ingredient} />
+      ))}
+    </IngredientSection>
+  );
+};
 
 export default BurgerList;

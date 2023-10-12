@@ -7,7 +7,6 @@ import styles from "./burger-ingredients.module.css";
 import ingredientPropType from "../../utils/prop-types";
 import Modal from "../modals/modals";
 import IngredientDetails from "../inrredient-details/inredient-details";
-import { IngredientsContext } from "../../services/context";
 
 const Ingredient = ({ ingredient }) => {
   const [isModalOpen, setIsModalOpen] = useState(false);

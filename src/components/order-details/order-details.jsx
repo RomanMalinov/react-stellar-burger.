@@ -1,8 +1,10 @@
-import { useContext } from "react";
+import React from "react";
+import { useSelector } from "react-redux";
 import styles from "./order-details.module.css";
-import { OrderContext } from "../../services/context";
+
 const OrderDetails = () => {
-  const { orderNumber } = useContext(OrderContext);
+  const orderNumber = useSelector((state) => state.order.setOrderNumber); 
+
   return (
     <section className={`${styles.conteiner}`}>
       <h3 className={`${styles.id} text text_type_digits-large`}>

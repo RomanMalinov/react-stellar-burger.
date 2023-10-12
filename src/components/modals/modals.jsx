@@ -5,7 +5,6 @@ import { createPortal } from "react-dom";
 import ModalOverlay from "../modals-overlay/modals-overlay";
 import styles from "./modals.module.css";
 
-
 const modalRoot = document.getElementById("modals");
 
 const Modal = ({ children, handleClose }) => {

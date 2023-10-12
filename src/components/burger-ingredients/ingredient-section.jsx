@@ -3,7 +3,7 @@ import PropTypes from "prop-types";
 
 const IngredientSection = ({ title, children }) => {
   return (
-    <div>
+    <div className={styles.section}>
       <h3 className={`${styles.subTitel} text text_type_main-medium`}>
         {title}
       </h3>

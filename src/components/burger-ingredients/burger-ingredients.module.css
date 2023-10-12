@@ -1,7 +1,16 @@
 .ingredientsConteiner {
   width: 600px;
   height: 912px;
+  outline: red 2px solid;
 }
+
+/* .IngregientConteiner {
+  outline: green 2px solid;
+}
+
+.section {
+  outline: gold 2px solid;
+} */
 
 .ingredientsTitle {
   margin: 40px 0 20px 0;

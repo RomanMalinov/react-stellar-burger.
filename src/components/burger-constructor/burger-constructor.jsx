@@ -1,34 +1,18 @@
-import { useContext } from "react";
 import styles from "./burger-constructor.module.css";
 import { ConstructorElement } from "@ya.praktikum/react-developer-burger-ui-components";
 import ListInternalElements from "./constructor-element.jsx";
 import FinalPrice from "./final-price.jsx";
-import { IngredientsContext } from "../../services/context";
+
 import { getOrder } from "../../utils/api";
-import { OrderContext } from "../../services/context";
 
-const BurgerConstructor = () => {
-  const ingredients = useContext(IngredientsContext);
-  const { setOrderNumber } = useContext(OrderContext);
-
-  console.log(ingredients);
-  if (!ingredients || ingredients.length === 0) {
-    return <p>Ожидается загрузка данных</p>;
-  }
+const BurgerConstructor = ({ ingredients, orderNumber, onOrderClick }) => {
   const externalListEl = ingredients.find((item) => item.type === "bun");
+  if (!externalListEl) {
+    return <p>Не найдено булок для бургера.</p>;
+  }
+
   const internalListEl = ingredients.filter((item) => item.type !== "bun");
   const allSum = ingredients.reduce((prevVal, item) => prevVal + item.price, 0);
-
-  const handleOrderClick = () => {
-    const ingredientIds = ingredients.filter((item) => item.type !== "bun").map((item) => item._id);
-    getOrder(ingredientIds)
-      .then((data) => {
-        setOrderNumber(data.order.number);
-      })
-      .catch((error) => {
-        console.error("Ошибка при создании заказа:", error);
-      });
-  };
 
   return (
     <section className={styles.constructorConteiner}>
@@ -50,7 +34,11 @@ const BurgerConstructor = () => {
           thumbnail={externalListEl.image}
         />
       </div>
-      <FinalPrice sum={allSum} onOrderClick={handleOrderClick} />
+      <FinalPrice
+        sum={allSum}
+        orderNumber={orderNumber}
+        onOrderClick={onOrderClick}
+      />
     </section>
   );
 };

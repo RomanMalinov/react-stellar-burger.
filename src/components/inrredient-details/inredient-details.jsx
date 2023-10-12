@@ -19,7 +19,6 @@ const IngredientDetails = ({ ingredient }) => {
       <div
         className={`${styles.conteinerNutritions} text text_type_main-default text_color_inactive`}
       >
-        {/* перенести в род контерйнер общие свойства дочек */}
         <div>
           <p>Калории,ккал</p>
           <p>{ingredient.calories}</p>
