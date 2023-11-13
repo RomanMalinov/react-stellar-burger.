@@ -3,7 +3,7 @@ import { useSelector } from "react-redux";
 import styles from "./order-details.module.css";
 
 const OrderDetails = () => {
-  const orderNumber = useSelector((state) => state.order.setOrderNumber); 
+  const orderNumber = useSelector((state) => state.order.setOrderNumber);
 
   return (
     <section className={`${styles.conteiner}`}>

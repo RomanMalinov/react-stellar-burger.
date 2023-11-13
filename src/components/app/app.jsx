@@ -6,6 +6,8 @@ import BurgerIngredients from "../burger-ingredients/burger-ingredients";
 import BurgerConstructor from "../burger-constructor/burger-constructor";
 import { fetchIngredients } from "../../services/ingredientsSlice";
 import { createOrder } from "../../services/orderSlice";
+import { HTML5Backend } from 'react-dnd-html5-backend';
+import { DndProvider } from 'react-dnd';
 
 function App() {
   const dispatch = useDispatch();
@@ -26,6 +28,7 @@ function App() {
   };
 
   return (
+    <DndProvider backend={HTML5Backend}>
     <div className={styles.app}>
       <AppHeader />
       <main className={styles.contentConteiner}>
@@ -42,9 +45,11 @@ function App() {
               onOrderClick={handleOrderClick}
             />
           </>
+
         )}
       </main>
     </div>
+    </DndProvider>
   );
 }
 

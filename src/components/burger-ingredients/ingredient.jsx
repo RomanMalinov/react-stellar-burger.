@@ -1,4 +1,4 @@
-import { useState } from "react";
+import React, { useState } from 'react';
 import {
   Counter,
   CurrencyIcon,
@@ -7,6 +7,7 @@ import styles from "./burger-ingredients.module.css";
 import ingredientPropType from "../../utils/prop-types";
 import Modal from "../modals/modals";
 import IngredientDetails from "../inrredient-details/inredient-details";
+import { useDrag } from 'react-dnd';
 
 const Ingredient = ({ ingredient }) => {
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -19,8 +20,20 @@ const Ingredient = ({ ingredient }) => {
     setIsModalOpen(false);
   };
 
+  // Drag source logic
+  const [{ isDragging }, drag] = useDrag(() => ({
+    type: 'ingredient',
+    item: { ingredient },
+    collect: (monitor) => ({
+      isDragging: !!monitor.isDragging(),
+    }),
+  }));
+
   return (
-    <section className={styles.IngregientConteiner}>
+    <section
+      ref={drag}
+      className={`${styles.IngregientConteiner} ${isDragging && 'dragging'}`}
+    >
       <Counter count={1} size="default" className="counter" />
       <img
         className={styles.img}

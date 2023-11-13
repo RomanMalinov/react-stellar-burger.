@@ -1,47 +1,28 @@
-import React, { useState, useEffect, useRef } from "react";
-import { Tab } from "@ya.praktikum/react-developer-burger-ui-components";
+import React from "react";
 import styles from "./burger-ingredients.module.css";
+import { Tab } from "@ya.praktikum/react-developer-burger-ui-components";
 
-const BurgerTab = () => {
-  const [current, setCurrent] = useState("one");
-
-  const handleScrollToBuns = () => {
-    document
-      .getElementById("buns-section")
-      .scrollIntoView({ behavior: "smooth" });
-    setCurrent("bun");
-  };
-
-  const handleScrollToSauces = () => {
-    document
-      .getElementById("sauces-section")
-      .scrollIntoView({ behavior: "smooth" });
-    setCurrent("sauce");
-  };
-
-  const handleScrollToMains = () => {
-    document
-      .getElementById("mains-section")
-      .scrollIntoView({ behavior: "smooth" });
-    setCurrent("main");
-  };
-
+const BurgerTab = ({ setSelectedTab, current }) => {
   return (
     <div className={styles.tab}>
-      <Tab value="bun" active={current === "bun"} onClick={handleScrollToBuns}>
+      <Tab
+        value="bun"
+        active={current === "bun"}
+        onClick={() => setSelectedTab('bun')}
+      >
         Булки
       </Tab>
       <Tab
         value="sauce"
         active={current === "sauce"}
-        onClick={handleScrollToSauces}
+        onClick={() => setSelectedTab('sauce')}
       >
         Соусы
       </Tab>
       <Tab
         value="main"
         active={current === "main"}
-        onClick={handleScrollToMains}
+        onClick={() => setSelectedTab('main')}
       >
         Начинки
       </Tab>
