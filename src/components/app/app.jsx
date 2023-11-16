@@ -4,7 +4,7 @@ import AppHeader from "../app-header/app-header";
 import BurgerIngredients from "../burger-ingredients/burger-ingredients";
 import BurgerConstructor from "../burger-constructor/burger-constructor";
 import { getIngredients } from "../../utils/api";
-import { IngredientsContext, ConstructorContext, OrderContext,} from "../../services/context";
+
 
 function App() {
   const [ingredients, setIngredients] = useState([]);
@@ -24,14 +24,10 @@ function App() {
     <div className={styles.app}>
       <AppHeader />
       <main className={styles.contentConteiner}>
-        <IngredientsContext.Provider value={ingredients}>
-          <OrderContext.Provider value={{ orderNumber, setOrderNumber }}>
-            <ConstructorContext.Provider value={ingredients}>
+  
               <BurgerIngredients />
               <BurgerConstructor />
-            </ConstructorContext.Provider>
-          </OrderContext.Provider>
-        </IngredientsContext.Provider>
+
       </main>
     </div>
   );

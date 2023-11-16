@@ -1,9 +1,16 @@
-import { createStore, combineReducers, applyMiddleware } from "redux";
-import { composeWithDevTools } from 'redux-devtools-extension';
-import thunk from "redux-thunk";
+import { configureStore } from "@reduxjs/toolkit";
+import constructorSlice from "./constructorSlice";
+import ingredientDetailsSlice from "./ingredientDetailsSlice";
+import orderDetailsSlise from "./orderDetailsSlise";
+import ingredientSlice from "./ingredientSlice";
 
+const store = configureStore({
+  reducer: {
+    ingredientDetails: ingredientDetailsSlice,
+    constructor: constructorSlice,
+    orderDetails: orderDetailsSlise,
+    ingredient: ingredientSlice,
+  },
+});
 
-export const store = createStore(reducer, composeWithDevTools(applyMiddleware(thunk)))
-
-
-
+export default store;
