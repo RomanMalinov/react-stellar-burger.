@@ -1,9 +1,10 @@
 import { createSlice } from "@reduxjs/toolkit";
 
 const constructorSlice = createSlice({
-  name: "",
+  name: "constructorIngredient", //название временнон, добавить потом более осмысленное
   initialState: {
-
+    bun: null,
+    ingredients: []
   },
   reducers: {
 

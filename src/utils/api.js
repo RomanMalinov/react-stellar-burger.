@@ -1,7 +1,7 @@
 export const getIngredients = async () => {
-  const api = "https://norma.nomoreparties.space/api/ingredients";
-  const response = await fetch(api);
-
+  const response = await fetch(
+    "https://norma.nomoreparties.space/api/ingredients"
+  );
   if (!response.ok) {
     throw new Error(`Ошибка при запросе к серверу: ${response.status}`);
   }
@@ -11,8 +11,7 @@ export const getIngredients = async () => {
 };
 
 export const getOrder = async (ingredientIds) => {
-  const api = "https://norma.nomoreparties.space/api/orders";
-  const response = await fetch(api, {
+  const response = await fetch("https://norma.nomoreparties.space/api/orders", {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
@@ -26,3 +25,34 @@ export const getOrder = async (ingredientIds) => {
 
   return await response.json();
 };
+
+// рабочая можель до начала 8 месяца Проектной работы
+
+// export const getIngredients = async () => {
+//   const api = "https://norma.nomoreparties.space/api/ingredients";
+//   const response = await fetch(api);
+
+//   if (!response.ok) {
+//     throw new Error(`Ошибка при запросе к серверу: ${response.status}`);
+//   }
+
+//   const responseData = await response.json();
+//   return responseData.data || [];
+// };
+
+// export const getOrder = async (ingredientIds) => {
+//   const api = "https://norma.nomoreparties.space/api/orders";
+//   const response = await fetch(api, {
+//     method: "POST",
+//     headers: {
+//       "Content-Type": "application/json",
+//     },
+//     body: JSON.stringify({ ingredients: ingredientIds }),
+//   });
+
+//   if (!response.ok) {
+//     throw new Error(`Ошибка при создании заказа: ${response.status}`);
+//   }
+
+//   return await response.json();
+// };

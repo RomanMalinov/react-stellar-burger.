@@ -1,7 +1,7 @@
 import { createSlice } from "@reduxjs/toolkit";
 
 const orderDetailsSlice = createSlice({
-  name: "",
+  name: "orderDetail",
   initialState: {
 
   },

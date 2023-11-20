@@ -4,9 +4,11 @@ import IngredientSection from "./ingredient-section";
 
 function BurgerList({ ingredients }) {
   console.log(ingredients)
+
   if (!ingredients || ingredients.length === 0) {
     return <p>Ожидается загрузка данных</p>;
   }
+
   const sortIngredient = listIngredient(ingredients);
   return (
     <div className={`${styles.scrollContainer} custom-scroll`}>

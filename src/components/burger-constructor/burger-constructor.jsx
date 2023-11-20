@@ -1,15 +1,13 @@
-import { useContext } from "react";
 import styles from "./burger-constructor.module.css";
 import { ConstructorElement } from "@ya.praktikum/react-developer-burger-ui-components";
 import ListInternalElements from "./constructor-element.jsx";
 import FinalPrice from "./final-price.jsx";
-import { IngredientsContext } from "../../services/context";
-import { getOrder } from "../../utils/api";
-import { OrderContext } from "../../services/context";
 
-const BurgerConstructor = () => {
-  const ingredients = useContext(IngredientsContext);
-  const { setOrderNumber } = useContext(OrderContext);
+import { getOrder } from "../../utils/api";
+
+const BurgerConstructor = ({ ingredients }) => {
+
+  // const { setOrderNumber } = useContext(OrderContext);
 
   console.log(ingredients);
   if (!ingredients || ingredients.length === 0) {
@@ -23,7 +21,7 @@ const BurgerConstructor = () => {
     const ingredientIds = ingredients.filter((item) => item.type !== "bun").map((item) => item._id);
     getOrder(ingredientIds)
       .then((data) => {
-        setOrderNumber(data.order.number);
+        // setOrderNumber(data.order.number);
       })
       .catch((error) => {
         console.error("Ошибка при создании заказа:", error);

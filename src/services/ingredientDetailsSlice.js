@@ -1,7 +1,7 @@
 import { createSlice } from "@reduxjs/toolkit";
 
 const ingredientDetailSlice = createSlice({
-  name: "",
+  name: "ingredientDetail",
   initialState: {
 
   },
@@ -13,4 +13,3 @@ const ingredientDetailSlice = createSlice({
 
 export const {/*actions */} = ingredientDetailSlice.actions;
 export default ingredientDetailSlice.reducer;
-//
