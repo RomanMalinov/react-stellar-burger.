@@ -1,6 +1,6 @@
 import { createSlice } from "@reduxjs/toolkit";
 
-const constructorSlice = createSlice({
+const constructorIngedientSlice = createSlice({
   name: "constructorIngredient", //название временнон, добавить потом более осмысленное
   initialState: {
     bun: null,
@@ -11,7 +11,7 @@ const constructorSlice = createSlice({
   },
 });
 
-export const {/*actions */} = constructorSlice.actions;
-export default constructorSlice.reducer;
+export const {/*actions */} = constructorIngedientSlice.actions;
+export default constructorIngedientSlice.reducer;
 
 //

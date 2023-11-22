@@ -1,8 +1,12 @@
 import styles from "./inredient-details.module.css";
 import PropTypes from "prop-types";
 import ingredientPropType from "../../utils/prop-types";
+import { useSelector } from "react-redux";
 
-const IngredientDetails = ({ ingredient }) => {
+const IngredientDetails = () => {
+
+  const ingredient = useSelector((state) => state.ingredientDetails.ingredient);
+
   return (
     <section className={`${styles.conteiner}`}>
       <h3 className={`${styles.title} text text_type_main-large`}>

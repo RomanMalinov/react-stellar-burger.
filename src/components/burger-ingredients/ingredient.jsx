@@ -7,16 +7,20 @@ import styles from "./burger-ingredients.module.css";
 import ingredientPropType from "../../utils/prop-types";
 import Modal from "../modals/modals";
 import IngredientDetails from "../inrredient-details/inredient-details";
-
+import { useSelector, useDispatch } from "react-redux";
+import { setCurrentInformationIngredient, removeCurrentInformationIngredient } from "../../services/ingredientDetailsSlice";
 
 const Ingredient = ({ ingredient }) => {
+  const dispatch = useDispatch();
   const [isModalOpen, setIsModalOpen] = useState(false);
 
   const openModal = () => {
+    dispatch(setCurrentInformationIngredient(ingredient)); // Вызвать действие для установки выбранного ингредиента.
     setIsModalOpen(true);
   };
 
   const closeModal = () => {
+    dispatch(removeCurrentInformationIngredient(ingredient))
     setIsModalOpen(false);
   };
 

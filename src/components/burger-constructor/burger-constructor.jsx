@@ -1,13 +1,13 @@
 import styles from "./burger-constructor.module.css";
+import { useDispatch, useSelector } from "react-redux";
 import { ConstructorElement } from "@ya.praktikum/react-developer-burger-ui-components";
 import ListInternalElements from "./constructor-element.jsx";
 import FinalPrice from "./final-price.jsx";
-
+import { setOrderNumber } from "../../services/orderDetailsSlice";
 import { getOrder } from "../../utils/api";
 
 const BurgerConstructor = ({ ingredients }) => {
-
-  // const { setOrderNumber } = useContext(OrderContext);
+  const dispatch = useDispatch();
 
   console.log(ingredients);
   if (!ingredients || ingredients.length === 0) {
@@ -18,11 +18,16 @@ const BurgerConstructor = ({ ingredients }) => {
   const allSum = ingredients.reduce((prevVal, item) => prevVal + item.price, 0);
 
   const handleOrderClick = () => {
-    const ingredientIds = ingredients.filter((item) => item.type !== "bun").map((item) => item._id);
+
+    const ingredientIds = ingredients
+      .filter((item) => item.type !== "bun")
+      .map((item) => item._id);
+
     getOrder(ingredientIds)
       .then((data) => {
-        // setOrderNumber(data.order.number);
+        dispatch(setOrderNumber(data.order.number));
       })
+
       .catch((error) => {
         console.error("Ошибка при создании заказа:", error);
       });

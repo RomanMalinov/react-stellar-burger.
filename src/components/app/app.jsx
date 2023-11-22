@@ -1,13 +1,15 @@
 import { useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux"
 import styles from "./app.module.css";
 import AppHeader from "../app-header/app-header";
 import BurgerIngredients from "../burger-ingredients/burger-ingredients";
 import BurgerConstructor from "../burger-constructor/burger-constructor";
 import { getIngredients } from "../../utils/api";
 
+
 function App() {
   const [ingredients, setIngredients] = useState([]);
-  const [orderNumber, setOrderNumber] = useState(null);
+  // const [orderNumber, setOrderNumber] = useState(null);
 
   useEffect(() => {
     getIngredients()
