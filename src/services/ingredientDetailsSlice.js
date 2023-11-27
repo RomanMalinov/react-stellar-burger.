@@ -7,17 +7,17 @@ const ingredientDetailSlice = createSlice({
   },
   reducers: {
     setCurrentInformationIngredient: (state, action) => {
-      state.ingredient = action.payload
+      state.ingredient = action.payload.ingredient;
     },
     removeCurrentInformationIngredient: (state, action) => {
-      state.ingredient = action.null
-    }
+      state.ingredient = action.null;
+    },
   },
 });
 
-
-export const  {setCurrentInformationIngredient, removeCurrentInformationIngredient } = ingredientDetailSlice.actions;
+export const {
+  setCurrentInformationIngredient,
+  removeCurrentInformationIngredient,
+} = ingredientDetailSlice.actions;
 export default ingredientDetailSlice.reducer;
-//
-
 

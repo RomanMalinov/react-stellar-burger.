@@ -9,23 +9,35 @@ import Modal from "../modals/modals";
 import IngredientDetails from "../inrredient-details/inredient-details";
 import { useSelector, useDispatch } from "react-redux";
 import { setCurrentInformationIngredient, removeCurrentInformationIngredient } from "../../services/ingredientDetailsSlice";
+import { useDrag } from "react-dnd";
+
+
 
 const Ingredient = ({ ingredient }) => {
   const dispatch = useDispatch();
   const [isModalOpen, setIsModalOpen] = useState(false);
 
   const openModal = () => {
-    dispatch(setCurrentInformationIngredient(ingredient)); // Вызвать действие для установки выбранного ингредиента.
+    dispatch(setCurrentInformationIngredient({ingredient}));
     setIsModalOpen(true);
   };
 
   const closeModal = () => {
-    dispatch(removeCurrentInformationIngredient(ingredient))
+    dispatch(removeCurrentInformationIngredient({ingredient}))
     setIsModalOpen(false);
   };
 
+
+  const [{isDrag}, dragRef] = useDrag({
+    type: "ingredient",
+    item: {...ingredient},
+  	collect: (monitor) => ({
+			isDrag: monitor.isDragging(),
+		})
+  })
+
   return (
-    <section className={styles.IngregientConteiner}>
+    <section className={styles.IngregientConteiner} ref={dragRef}>
       <Counter count={1} size="default" className="counter" />
       <img
         className={styles.img}

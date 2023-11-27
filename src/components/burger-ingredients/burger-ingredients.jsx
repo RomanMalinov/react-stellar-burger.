@@ -1,9 +1,14 @@
 import BurgerTab from "./burger-tab";
 import BurgerList from "./burger-list";
 import styles from "./burger-ingredients.module.css";
+import { useSelector } from "react-redux";
 
-const BurgerIngredients = ({ingredients}) => {
 
+const BurgerIngredients = () => {
+
+
+
+  const ingredients = useSelector(state => state.ingredientList.ingredients);
   return (
     <section className={styles.ingredientsConteiner}>
       <h2 className={`${styles.ingredientsTitle} text text_type_main-large`}>
@@ -16,5 +21,7 @@ const BurgerIngredients = ({ingredients}) => {
     </section>
   );
 };
+
+
 
 export default BurgerIngredients;

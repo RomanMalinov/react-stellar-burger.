@@ -6,8 +6,13 @@ import {
 } from "@ya.praktikum/react-developer-burger-ui-components";
 import PropTypes from "prop-types";
 import ingredientPropType from "../../utils/prop-types";
+import { useSelector } from "react-redux";
+
 
 const ListInternalElements = ({ data }) => {
+
+
+
   return data.map((item) => {
     return (
       <li key={item._id} className={styles.item}>

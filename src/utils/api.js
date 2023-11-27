@@ -1,13 +1,18 @@
 export const getIngredients = async () => {
-  const response = await fetch(
-    "https://norma.nomoreparties.space/api/ingredients"
-  );
-  if (!response.ok) {
-    throw new Error(`Ошибка при запросе к серверу: ${response.status}`);
-  }
 
-  const responseData = await response.json();
-  return responseData.data || [];
+    const response = await fetch(
+      "https://norma.nomoreparties.space/api/ingredients"
+    );
+    console.log(response); // можно будеть удалить
+
+    if (!response.ok) {
+      throw new Error(`Server`);
+    }
+//// stop
+    const responseData = await response.json();
+
+    return responseData.data || []; ///  а нужно ли так?
+
 };
 
 export const getOrder = async (ingredientIds) => {
@@ -26,7 +31,7 @@ export const getOrder = async (ingredientIds) => {
   return await response.json();
 };
 
-// рабочая можель до начала 8 месяца Проектной работы
+// рабочая модель до начала 8 месяца Проектной работы
 
 // export const getIngredients = async () => {
 //   const api = "https://norma.nomoreparties.space/api/ingredients";
@@ -39,6 +44,8 @@ export const getOrder = async (ingredientIds) => {
 //   const responseData = await response.json();
 //   return responseData.data || [];
 // };
+
+
 
 // export const getOrder = async (ingredientIds) => {
 //   const api = "https://norma.nomoreparties.space/api/orders";
