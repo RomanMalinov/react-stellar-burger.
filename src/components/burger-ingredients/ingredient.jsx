@@ -8,37 +8,41 @@ import ingredientPropType from "../../utils/prop-types";
 import Modal from "../modals/modals";
 import IngredientDetails from "../inrredient-details/inredient-details";
 import { useSelector, useDispatch } from "react-redux";
-import { setCurrentInformationIngredient, removeCurrentInformationIngredient } from "../../services/ingredientDetailsSlice";
+import {
+  setCurrentInformationIngredient,
+  removeCurrentInformationIngredient,
+} from "../../services/ingredientDetailsSlice";
 import { useDrag } from "react-dnd";
-
-
 
 const Ingredient = ({ ingredient }) => {
   const dispatch = useDispatch();
   const [isModalOpen, setIsModalOpen] = useState(false);
 
+  const count = useSelector(
+    (state) => state.constructorIngedient.ingredientCounts[ingredient._id] || 0
+  );
+
   const openModal = () => {
-    dispatch(setCurrentInformationIngredient({ingredient}));
+    dispatch(setCurrentInformationIngredient({ ingredient }));
     setIsModalOpen(true);
   };
 
   const closeModal = () => {
-    dispatch(removeCurrentInformationIngredient({ingredient}))
+    dispatch(removeCurrentInformationIngredient({ ingredient }));
     setIsModalOpen(false);
   };
 
-
-  const [{isDrag}, dragRef] = useDrag({
+  const [{ isDrag }, dragRef] = useDrag({
     type: "ingredient",
-    item: {...ingredient},
-  	collect: (monitor) => ({
-			isDrag: monitor.isDragging(),
-		})
-  })
+    item: { ...ingredient },
+    collect: (monitor) => ({
+      isDrag: monitor.isDragging(),
+    }),
+  });
 
   return (
     <section className={styles.IngregientConteiner} ref={dragRef}>
-      <Counter count={1} size="default" className="counter" />
+      {count > 0 && <Counter count={count} size="default" />}
       <img
         className={styles.img}
         src={ingredient.image}

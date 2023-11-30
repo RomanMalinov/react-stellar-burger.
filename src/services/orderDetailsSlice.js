@@ -13,6 +13,4 @@ const orderDetailsSlice = createSlice({
 });
 
 export const { setOrderNumber } = orderDetailsSlice.actions;
-
 export default orderDetailsSlice.reducer;
-

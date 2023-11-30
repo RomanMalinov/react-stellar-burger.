@@ -20,4 +20,3 @@ export const {
   removeCurrentInformationIngredient,
 } = ingredientDetailSlice.actions;
 export default ingredientDetailSlice.reducer;
-

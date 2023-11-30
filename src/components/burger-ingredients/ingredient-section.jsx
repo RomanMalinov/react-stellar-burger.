@@ -3,10 +3,7 @@ import PropTypes from "prop-types";
 import { useSelector } from "react-redux";
 
 const IngredientSection = ({ title, children }) => {
-
-
   return (
-
     <div>
       <h3 className={`${styles.subTitel} text text_type_main-medium`}>
         {title}

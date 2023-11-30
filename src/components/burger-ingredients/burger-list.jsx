@@ -3,11 +3,8 @@ import styles from "./burger-ingredients.module.css";
 import IngredientSection from "./ingredient-section";
 import { useSelector } from "react-redux";
 
-
 function BurgerList({ ingredients }) {
   console.log(ingredients);
-
-
 
   // const { status, error } = useSelector(
   //   (state) => state.ingredientList.ingredients
