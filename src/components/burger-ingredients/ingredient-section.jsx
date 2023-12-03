@@ -1,20 +1,21 @@
+import { forwardRef } from "react";
 import styles from "./burger-ingredients.module.css";
 import PropTypes from "prop-types";
-import { useSelector } from "react-redux";
 
-const IngredientSection = ({ title, children }) => {
+const IngredientSection = forwardRef(({ title, children }, ref) => {
   return (
-    <div>
-      <h3 className={`${styles.subTitel} text text_type_main-medium`}>
+    <div ref={ref}>
+      <h3 className={`${styles.subTitle} text text_type_main-medium`}>
         {title}
       </h3>
       <ul className={styles.list}>{children}</ul>
     </div>
   );
-};
+});
 
 IngredientSection.propTypes = {
   title: PropTypes.string.isRequired,
   children: PropTypes.node.isRequired,
 };
+
 export default IngredientSection;

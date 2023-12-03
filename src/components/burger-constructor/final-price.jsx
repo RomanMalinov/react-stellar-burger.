@@ -43,8 +43,8 @@ const FinalPrice = ({ sum, onOrderClick }) => {
   );
 };
 
-// FinalPrice.propTypes = {
-//   sum: PropTypes.number.isRequired,
-// };
+FinalPrice.propTypes = {
+  sum: PropTypes.number.isRequired,
+};
 
 export default FinalPrice;

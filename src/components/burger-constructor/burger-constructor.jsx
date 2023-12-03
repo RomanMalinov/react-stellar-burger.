@@ -1,6 +1,6 @@
-import styles from "./burger-constructor.module.css";
-import { useDispatch, useSelector } from "react-redux";
 import { useMemo } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import styles from "./burger-constructor.module.css";
 import { ConstructorElement } from "@ya.praktikum/react-developer-burger-ui-components";
 import ListInternalElements from "./constructor-element.jsx";
 import FinalPrice from "./final-price.jsx";
@@ -9,6 +9,7 @@ import { getOrder } from "../../utils/api";
 import { useDrop } from "react-dnd";
 import { addIngredient } from "../../services/constructorIngedientSlice";
 import { addBuns } from "../../services/constructorIngedientSlice";
+
 
 const BurgerConstructor = () => {
   const ingredients = useSelector(
@@ -75,7 +76,10 @@ const BurgerConstructor = () => {
           />
         )}
         <ul className={`${styles.listInternalConteiner} custom-scroll`}>
-          <ListInternalElements data={internalListEl} />
+          <ListInternalElements
+            data={internalListEl}
+            ingredients={ingredients}
+          />
         </ul>
         {externalListEl && (
           <ConstructorElement

@@ -1,18 +1,13 @@
 import { useState } from "react";
-import {
-  Counter,
-  CurrencyIcon,
-} from "@ya.praktikum/react-developer-burger-ui-components";
+import { useSelector, useDispatch } from "react-redux";
+import { useDrag } from "react-dnd";
+import { Counter, CurrencyIcon } from "@ya.praktikum/react-developer-burger-ui-components";
 import styles from "./burger-ingredients.module.css";
 import ingredientPropType from "../../utils/prop-types";
 import Modal from "../modals/modals";
 import IngredientDetails from "../inrredient-details/inredient-details";
-import { useSelector, useDispatch } from "react-redux";
-import {
-  setCurrentInformationIngredient,
-  removeCurrentInformationIngredient,
-} from "../../services/ingredientDetailsSlice";
-import { useDrag } from "react-dnd";
+import { setCurrentInformationIngredient, removeCurrentInformationIngredient } from "../../services/ingredientDetailsSlice";
+
 
 const Ingredient = ({ ingredient }) => {
   const dispatch = useDispatch();
@@ -32,11 +27,11 @@ const Ingredient = ({ ingredient }) => {
     setIsModalOpen(false);
   };
 
-  const [{ isDrag }, dragRef] = useDrag({
+  const [{ isDragging }, dragRef] = useDrag({
     type: "ingredient",
     item: { ...ingredient },
     collect: (monitor) => ({
-      isDrag: monitor.isDragging(),
+      isDragging: monitor.isDragging(),
     }),
   });
 

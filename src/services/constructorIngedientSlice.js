@@ -9,14 +9,17 @@ const constructorIngredientSlice = createSlice({
     ingredientCounts: {},
   },
   reducers: {
-    addIngredient: (state, action) => {
-      const ingredientWithKey = {
-        ...action.payload,
-        key: nanoid(),
-      };
-      state.ingredients.push(ingredientWithKey);
-      const count = state.ingredientCounts[ingredientWithKey._id] || 0;
-      state.ingredientCounts[ingredientWithKey._id] = count + 1;
+    addIngredient: {
+      reducer: (state, action) => {
+        const { key, ...ingredient } = action.payload;
+        state.ingredients.push({ ...ingredient, key });
+        const count = state.ingredientCounts[ingredient._id] || 0;
+        state.ingredientCounts[ingredient._id] = count + 1;
+      },
+      prepare: (payload) => {
+        const key = nanoid();
+        return { payload: { ...payload, key } };
+      },
     },
     addBuns: (state, action) => {
       if (!state.buns) {
@@ -39,41 +42,21 @@ const constructorIngredientSlice = createSlice({
         (ingredient) => ingredient.key !== action.payload.id
       );
     },
+    moveProduct: (state, action) => {
+      let array = state.ingredients.slice();
+      array[action.payload.dragIndex] = array.splice(
+        action.payload.hoverIndex,
+        1,
+        array[action.payload.dragIndex]
+      )[0];
+      state.ingredients = array;
+    },
+    resetIndgredient: (state) => {
+      state.ingredients = [];
+    },
   },
 });
 
-export const { addIngredient, addBuns, removeIngredient } =
+export const { addIngredient, addBuns, removeIngredient, moveProduct } =
   constructorIngredientSlice.actions;
 export default constructorIngredientSlice.reducer;
-
-// import { createSlice } from "@reduxjs/toolkit";
-// import { nanoid } from "nanoid";
-
-// const constructorIngredientSlice = createSlice({
-//   name: "constructorIngredient",
-//   initialState: {
-//     buns: null,
-//     ingredients: [],
-//   },
-//   reducers: {
-//     addIngredient: (state, action) => {
-//       const ingredientWithKey = {
-//         ...action.payload,
-//         key: nanoid(),
-//       };
-//       state.ingredients.push(ingredientWithKey);
-//     },
-//     addBuns: (state, action) => {
-//       state.buns = action.payload;
-//     },
-//     removeIngredient: (state, action) => {
-//       state.ingredients = state.ingredients.filter(
-//         (ingredient) => ingredient.key !== action.payload.id
-//       );
-//     },
-//   },
-// });
-
-// export const { addIngredient, addBuns, removeIngredient } =
-//   constructorIngredientSlice.actions;
-// export default constructorIngredientSlice.reducer;

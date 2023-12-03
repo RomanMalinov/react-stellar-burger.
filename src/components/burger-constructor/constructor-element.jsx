@@ -1,34 +1,37 @@
-import { useState } from "react";
+import { useCallback } from "react";
+import { useDispatch } from "react-redux";
 import styles from "./burger-constructor.module.css";
-import {
-  ConstructorElement,
-  DragIcon,
-} from "@ya.praktikum/react-developer-burger-ui-components";
 import PropTypes from "prop-types";
 import ingredientPropType from "../../utils/prop-types";
-import { useSelector, useDispatch } from "react-redux";
+import Element from "./element";
 import { removeIngredient } from "../../services/constructorIngedientSlice";
+import { moveProduct } from "../../services/constructorIngedientSlice";
 
-const ListInternalElements = ({ data }) => {
+
+const ListInternalElements = ({ data, ingredients }) => {
   const dispatch = useDispatch();
 
-  const handleRemoveClick = (id) => {
-    dispatch(removeIngredient({ id }));
-  };
+  // const handleRemoveClick = (id) => {
+  //   dispatch(removeIngredient({ id }));
+  // };
 
-  return data.map((item) => {
-    return (
-      <li key={item.key} className={styles.item}>
-        <DragIcon type="primary" />
-        <ConstructorElement
-          text={item.name}
-          price={item.price}
-          thumbnail={item.image}
-          handleClose={() => handleRemoveClick(item.key)}
+  const moveElement = useCallback(({ dragIndex, hoverIndex }) => {
+    dispatch(moveProduct({ dragIndex, hoverIndex }));
+  }, [dispatch]);
+
+  return (
+    <ul className={styles.list}>
+      {data.map((item, index) => (
+        <Element
+          key={item.key}
+          index={index}
+          item={item}
+          onRemove={() => dispatch(removeIngredient({ id: item.key }))}
+          moveElement={moveElement}
         />
-      </li>
-    );
-  });
+      ))}
+    </ul>
+  );
 };
 
 ListInternalElements.propTypes = {
