@@ -25,7 +25,13 @@ const constructorIngredientSlice = createSlice({
       if (!state.buns) {
         const count = state.ingredientCounts[action.payload._id] || 0;
         state.ingredientCounts[action.payload._id] = count + 2;
+      } else {
+        const prevBunsCount = state.ingredientCounts[state.buns._id] || 0;
+        state.ingredientCounts[state.buns._id] = Math.max(prevBunsCount - 2, 0);
+        const newBunsCount = state.ingredientCounts[action.payload._id] || 0;
+        state.ingredientCounts[action.payload._id] = newBunsCount + 2;
       }
+
       state.buns = action.payload;
     },
     removeIngredient: (state, action) => {

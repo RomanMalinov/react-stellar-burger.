@@ -82,3 +82,13 @@
 .tab {
   display: flex;
 }
+
+.hiddenText {
+  border: 2px solid;
+  width: 600px;
+  height: 500px;
+  border-radius: 100px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}

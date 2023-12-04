@@ -10,7 +10,6 @@ import { useDrop } from "react-dnd";
 import { addIngredient } from "../../services/constructorIngedientSlice";
 import { addBuns } from "../../services/constructorIngedientSlice";
 
-
 const BurgerConstructor = () => {
   const ingredients = useSelector(
     (state) => state.constructorIngedient.ingredients
@@ -27,15 +26,7 @@ const BurgerConstructor = () => {
   }, [ingredients, bun]);
 
   const dispatch = useDispatch();
-  // if (!ingredients || ingredients.length === 0) {
-  //   return (
-  //     <div style={{ backgroundColor: "blue", width: "500px" }}>
-  //       <p>Перетащите ингредиент</p>
-  //     </div>
-  //   );
-  // }
-
-  const [, dropRef] = useDrop({
+  const [{ isOver }, dropRef] = useDrop({
     accept: ["ingredient", "bun"],
     drop: (item) => {
       if (item.type === "bun") {
@@ -44,7 +35,12 @@ const BurgerConstructor = () => {
         dispatch(addIngredient(item));
       }
     },
+    collect: (monitor) => ({
+      isOver: monitor.isOver(),
+    }),
   });
+
+  const borderColor = isOver ? "#f2f2f3" : "#131316";
 
   const externalListEl = bun;
   const internalListEl = ingredients.filter((item) => item.type !== "bun");
@@ -66,31 +62,42 @@ const BurgerConstructor = () => {
 
   return (
     <section className={styles.constructorConteiner} ref={dropRef}>
-      <div className={styles.elementsConteiner}>
-        {externalListEl && (
-          <ConstructorElement
-            type="top"
-            isLocked={true}
-            text={`${externalListEl.name} (верх)`}
-            thumbnail={externalListEl.image}
-          />
-        )}
-        <ul className={`${styles.listInternalConteiner} custom-scroll`}>
-          <ListInternalElements
-            data={internalListEl}
-            ingredients={ingredients}
-          />
-        </ul>
-        {externalListEl && (
-          <ConstructorElement
-            type="bottom"
-            isLocked={true}
-            text={`${externalListEl.name} (низ)`}
-            price={externalListEl.price}
-            thumbnail={externalListEl.image}
-          />
-        )}
-      </div>
+      {!externalListEl && internalListEl.length === 0 && (
+        <div className={styles.hiddenConteiner}>
+          <p className={`${styles.hiddenText} text text_type_main-large`}>
+            Добавьте ингредиенты
+          </p>
+        </div>
+      )}
+
+      {(externalListEl || internalListEl.length > 0) && (
+        <div className={styles.elementsConteiner} style={{ borderColor }}>
+          {externalListEl && (
+            <ConstructorElement
+              type="top"
+              isLocked={true}
+              text={`${externalListEl.name} (верх)`}
+              thumbnail={externalListEl.image}
+            />
+          )}
+          <ul className={`${styles.listInternalConteiner} custom-scroll`}>
+            <ListInternalElements
+              data={internalListEl}
+              ingredients={ingredients}
+            />
+          </ul>
+          {externalListEl && (
+            <ConstructorElement
+              type="bottom"
+              isLocked={true}
+              text={`${externalListEl.name} (низ)`}
+              price={externalListEl.price}
+              thumbnail={externalListEl.image}
+            />
+          )}
+        </div>
+      )}
+
       <FinalPrice sum={allSum} onOrderClick={handleOrderClick} />
     </section>
   );

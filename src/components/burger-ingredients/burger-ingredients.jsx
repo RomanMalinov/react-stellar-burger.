@@ -88,9 +88,8 @@ const BurgerIngredients = () => {
       <div>
         <BurgerTab selectedTab={selectedTab} setSelectedTab={setSelectedTab} />
         <div ref={dragRef}>
-          {isLoading && <p>загрузка</p>}
-          {!isLoading && error && <p>{`Error: ${error}`}</p>}
-          {!isLoading && ingredients.length === 0 && <p>Нет ингредиентов</p>}
+          {isLoading && <p className={`${styles.hiddenText} text text_type_main-large`}>загрузка</p>}
+          {!isLoading && ingredients.length === 0 && <p className={`${styles.hiddenText} text text_type_main-large`}>Ошибка загрузки</p>}
           {!isLoading && ingredients.length > 0 && (
             <div
               ref={tabsRef}
