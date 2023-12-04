@@ -1,13 +1,18 @@
 import { useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { useDrag } from "react-dnd";
-import { Counter, CurrencyIcon } from "@ya.praktikum/react-developer-burger-ui-components";
+import {
+  Counter,
+  CurrencyIcon,
+} from "@ya.praktikum/react-developer-burger-ui-components";
 import styles from "./burger-ingredients.module.css";
-import ingredientPropType from "../../utils/prop-types";
+import PropTypes from "prop-types";
 import Modal from "../modals/modals";
 import IngredientDetails from "../inrredient-details/inredient-details";
-import { setCurrentInformationIngredient, removeCurrentInformationIngredient } from "../../services/ingredientDetailsSlice";
-
+import {
+  setCurrentInformationIngredient,
+  removeCurrentInformationIngredient,
+} from "../../services/ingredientDetailsSlice";
 
 const Ingredient = ({ ingredient }) => {
   const dispatch = useDispatch();
@@ -61,7 +66,11 @@ const Ingredient = ({ ingredient }) => {
 };
 
 Ingredient.propTypes = {
-  ingredient: ingredientPropType.isRequired,
+  ingredient: PropTypes.shape({
+    _id: PropTypes.string.isRequired,
+    image: PropTypes.string.isRequired,
+    name: PropTypes.string.isRequired,
+    price: PropTypes.number.isRequired,
+  }).isRequired,
 };
-
 export default Ingredient;

@@ -5,8 +5,9 @@ import {
   DragIcon,
 } from "@ya.praktikum/react-developer-burger-ui-components";
 import { useDrag, useDrop } from "react-dnd";
+import PropTypes from "prop-types";
 
-const Element = ({ item, id, index, onRemove, moveElement }) => {
+const Element = ({ item, index, onRemove, moveElement }) => {
   const ref = useRef(null);
   const [{ handlerId }, drop] = useDrop({
     accept: "sortIngredient",
@@ -43,7 +44,7 @@ const Element = ({ item, id, index, onRemove, moveElement }) => {
   const [{ isDragging }, drag] = useDrag({
     type: "sortIngredient",
     item: () => {
-      return { id, index };
+      return { index };
     },
     collect: (monitor) => ({
       isDragging: monitor.isDragging(),
@@ -73,6 +74,17 @@ const Element = ({ item, id, index, onRemove, moveElement }) => {
       />
     </li>
   );
+};
+
+Element.propTypes = {
+  item: PropTypes.shape({
+    name: PropTypes.string,
+    price: PropTypes.number,
+    image: PropTypes.string,
+  }).isRequired,
+  index: PropTypes.number.isRequired,
+  onRemove: PropTypes.func.isRequired,
+  moveElement: PropTypes.func.isRequired,
 };
 
 export default Element;

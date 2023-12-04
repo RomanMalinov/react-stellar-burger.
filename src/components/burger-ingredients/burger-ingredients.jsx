@@ -6,7 +6,6 @@ import BurgerTab from "./burger-tab";
 import Ingredient from "./ingredient";
 import IngredientSection from "./ingredient-section";
 
-
 const BurgerIngredients = () => {
   const ingredients = useSelector((state) => state.ingredientList.ingredients);
 
@@ -88,8 +87,16 @@ const BurgerIngredients = () => {
       <div>
         <BurgerTab selectedTab={selectedTab} setSelectedTab={setSelectedTab} />
         <div ref={dragRef}>
-          {isLoading && <p className={`${styles.hiddenText} text text_type_main-large`}>загрузка</p>}
-          {!isLoading && ingredients.length === 0 && <p className={`${styles.hiddenText} text text_type_main-large`}>Ошибка загрузки</p>}
+          {isLoading && (
+            <p className={`${styles.hiddenText} text text_type_main-large`}>
+              загрузка
+            </p>
+          )}
+          {!isLoading && ingredients.length === 0 && (
+            <p className={`${styles.hiddenText} text text_type_main-large`}>
+              Ошибка загрузки
+            </p>
+          )}
           {!isLoading && ingredients.length > 0 && (
             <div
               ref={tabsRef}
@@ -113,7 +120,4 @@ const BurgerIngredients = () => {
   );
 };
 
-
-
 export default BurgerIngredients;
-

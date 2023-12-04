@@ -7,17 +7,15 @@ import Element from "./element";
 import { removeIngredient } from "../../services/constructorIngedientSlice";
 import { moveProduct } from "../../services/constructorIngedientSlice";
 
-
 const ListInternalElements = ({ data, ingredients }) => {
   const dispatch = useDispatch();
 
-  // const handleRemoveClick = (id) => {
-  //   dispatch(removeIngredient({ id }));
-  // };
-
-  const moveElement = useCallback(({ dragIndex, hoverIndex }) => {
-    dispatch(moveProduct({ dragIndex, hoverIndex }));
-  }, [dispatch]);
+  const moveElement = useCallback(
+    ({ dragIndex, hoverIndex }) => {
+      dispatch(moveProduct({ dragIndex, hoverIndex }));
+    },
+    [dispatch]
+  );
 
   return (
     <ul className={styles.list}>
@@ -35,7 +33,11 @@ const ListInternalElements = ({ data, ingredients }) => {
 };
 
 ListInternalElements.propTypes = {
-  data: PropTypes.arrayOf(ingredientPropType).isRequired,
+  data: PropTypes.arrayOf(
+    PropTypes.shape({
+      key: PropTypes.string.isRequired,
+    })
+  ).isRequired,
+  ingredients: PropTypes.array.isRequired,
 };
-
 export default ListInternalElements;
