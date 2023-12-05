@@ -27,6 +27,7 @@ const ingredienListSlice = createSlice({
       .addCase(fetchIngredientList.rejected, (state, action) => {
         state.isLoading = false;
         state.error = action.error;
+        state.ingredients = [];
       });
   },
 });

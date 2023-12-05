@@ -11,10 +11,10 @@ import { addIngredient } from "../../services/constructorIngedientSlice";
 import { addBuns } from "../../services/constructorIngedientSlice";
 
 const BurgerConstructor = () => {
-  const ingredients = useSelector(
-    (state) => state.constructorIngedient.ingredients
-  );
-  const bun = useSelector((state) => state.constructorIngedient.buns);
+  const burgerIngredients = (state) => state.constructorIngedient.ingredients;
+  const burgertBun = (state) => state.constructorIngedient.buns;
+  const ingredients = useSelector(burgerIngredients);
+  const bun = useSelector(burgertBun);
 
   const allSum = useMemo(() => {
     const bunsSum = bun ? bun.price * 2 : 0;
@@ -46,10 +46,13 @@ const BurgerConstructor = () => {
   const internalListEl = ingredients.filter((item) => item.type !== "bun");
 
   const handleOrderClick = () => {
-    const ingredientIds = ingredients
-      .filter((item) => item.type !== "bun")
-      .map((item) => item._id);
-
+    const bunId = bun ? [bun._id, bun._id] : [];
+    const ingredientIds = [
+      ...bunId,
+      ...ingredients
+        .filter((item) => item.type !== "bun")
+        .map((item) => item._id),
+    ];
     getOrder(ingredientIds)
       .then((data) => {
         dispatch(setOrderNumber(data.order.number));
