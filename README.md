@@ -1,4 +1,4 @@
-# Проект: react-stellar-burger
+# Проект: [react-stellar-burger ](https://romanmalinov.github.io/react-stellar-burger.)
 
 ## react-stellar-burger -  проектная работа по созданию главной страницу бургерной с использованием инструментов React
 ## Целью данного проекта является использование навыков и инструментов на практике полученных на седьмом спринте курса Веб-разработчик от [Яндекс практикума](https://praktikum.yandex.ru/)
