@@ -1,0 +1,31 @@
+.main {
+  margin-top: 80px;
+  width: 1280px;
+  padding: 0;
+  outline: 2px gold solid;
+  display: flex;
+}
+
+.navLinks {
+  margin-right: 60px;
+  max-width: 320px;
+  outline: 3px white solid;
+}
+
+.form {
+  margin-top: 0;
+  outline: 3px green solid;
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.link {
+  text-decoration: none;
+}
+
+.link:hover {
+  transition: 1s;
+  opacity: .5
+}
+
