@@ -6,25 +6,40 @@ import {
   Logo,
   ProfileIcon,
 } from "@ya.praktikum/react-developer-burger-ui-components";
+import { NavLink, useLocation } from "react-router-dom";
 
 const AppHeader = () => {
+  // const setActivLink = ({ isActive }) => ({
+  //   color: isActive ? "var(--color-active)" : "white",
+  // });
+const location = useLocation();
+
   return (
     <header className={styles.header}>
+      <div className={styles.conteiner}>
       <nav className={styles.nav}>
-        <a className={`${styles.link} text text_type_main-small`}>
-          <BurgerIcon type="primary" />
-          <span className={styles.text}>Конструктор</span>
-        </a>
-        <a className={`${styles.link} text text_type_main-small`}>
-          <ListIcon type="secondary" />
-          <span className={styles.text}>Лента заказов</span>
-        </a>
+        <NavLink
+          to={"/"}
+          className={({isActive}) => `${styles.link} ${isActive ? styles.headerActive : ""}`}
+        >
+          <BurgerIcon type={location.pathname === "/" ? 'primary' : 'secondary'} ></BurgerIcon>
+          <p className="text text_type_main-default">Конструктор</p>
+        </NavLink>
+        <NavLink to={"*"}  className={({isActive}) => `${styles.link} text text_type_main-small ${isActive ? styles.headerActive : ""}`}>
+          <ListIcon type={location.pathname === "/*" ? 'primary' : 'secondary'} />
+          <p className="text text_type_main-default">Лента заказов</p>
+        </NavLink>
       </nav>
-      <Logo className={styles.logo} />
-      <a className={styles.link}>
-        <ProfileIcon type="secondary" />
-        <span className={`${styles.text} text text_type_main-small`}>Личный кабинет</span>
-      </a>
+      <NavLink className={styles.logo} to={"/"}>
+        <Logo  />
+      </NavLink>
+      </div>
+      <NavLink to={"/profile"}   className={({isActive}) => `${styles.link} text text_type_main-small ${isActive ? styles.headerActive : ""}`}>
+        <ProfileIcon type={location.pathname === "/profile" ? 'primary' : 'secondary'} />
+        <p className="text text_type_main-default">
+          Личный кабинет
+        </p>
+      </NavLink>
     </header>
   );
 };
@@ -32,3 +47,4 @@ export default AppHeader;
 
 //(navMenu)
 // (NavBar)
+

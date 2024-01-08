@@ -4,6 +4,7 @@ import ingredientDetailsSlice from "./ingredientDetailsSlice";
 import orderDetailsSlice from "./orderDetailsSlice";
 import ingredienListSlice from "./ingredientListSlice";
 
+
 const store = configureStore({
   reducer: {
     ingredientDetails: ingredientDetailsSlice,

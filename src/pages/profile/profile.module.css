@@ -12,9 +12,9 @@
   outline: 3px white solid;
 }
 
-.form {
+.formConteiner {
   margin-top: 0;
-  outline: 3px green solid;
+  outline: 3px red solid;
   display: flex;
   flex-direction: column;
   gap: 24px;

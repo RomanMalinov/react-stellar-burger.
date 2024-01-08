@@ -13,8 +13,18 @@ import {
   setCurrentInformationIngredient,
   removeCurrentInformationIngredient,
 } from "../../services/ingredientDetailsSlice";
+import {
+  Routes,
+  Route,
+  useLocation,
+  useNavigate,
+  Link,
+} from "react-router-dom";
 
 const Ingredient = ({ ingredient }) => {
+  const location = useLocation();
+  const ingredientId = ingredient["_id"];
+  
   const dispatch = useDispatch();
   const [isModalOpen, setIsModalOpen] = useState(false);
 
@@ -41,7 +51,13 @@ const Ingredient = ({ ingredient }) => {
   });
 
   return (
-    <section className={styles.IngregientConteiner} ref={dragRef}>
+    <Link
+      key={ingredientId}
+      to={`/ingredients/${ingredientId}`}
+      state={{ background: location }}
+      className={styles.IngregientConteiner}
+      ref={dragRef}
+    >
       {count > 0 && <Counter count={count} size="default" />}
       <img
         className={styles.img}
@@ -61,7 +77,7 @@ const Ingredient = ({ ingredient }) => {
           <IngredientDetails ingredient={ingredient} />
         </Modal>
       )}
-    </section>
+    </Link>
   );
 };
 

@@ -1,6 +1,9 @@
-import Form from "../../components/form/form";
-import ConteinerLink from "../../components/form/conteiner-link/conteiner-link";
-import { Input } from "@ya.praktikum/react-developer-burger-ui-components";
+import {
+  EmailInput,
+  Input,
+  PasswordInput,
+  Button,
+} from "@ya.praktikum/react-developer-burger-ui-components";
 import styles from "./profile.module.css";
 import { Link } from "react-router-dom";
 
@@ -29,30 +32,23 @@ function Profile() {
         </p>
       </nav>
 
-      <div className={styles.conteiner}>
-        <form className={styles.form}>
-          <Input
-            icon={"EditIcon"}
-            placeholder={"Имя"}
-            type={"text"}
-            // value={valueName}
-            name={"name"}
-
+      <div className={styles.form}>
+        <form className={styles.formConteiner}>
+          <Input icon="EditIcon" placeholder="Имя" name={"name"} />
+          <EmailInput placeholder="Логин" name={"email"} isIcon={true} />
+          <PasswordInput
+            placeholder="Пароль"
+            name={"password"}
+            icon="EditIcon"
           />
-          <Input
-            icon={"EditIcon"}
-            placeholder={"Логин"}
-            type={"text"}
-            // value={valueLogin}
-            name={"name"}
-          />
-          <Input
-            icon={"EditIcon"}
-            placeholder={"Пароль"}
-            type={"email"}
-            // value={valuePassword}
-            name={"text"}
-            />
+          <div className={styles.buttons}>
+            {/* <Button htmlType="button" type="secondary" size="medium">
+              Отменить
+            </Button>
+            <Button htmlType="submit" type="primary" size="medium">
+              Сохранить
+            </Button> */}
+          </div>
         </form>
       </div>
     </main>

@@ -1,5 +1,5 @@
 import AppHeader from "../app-header/app-header";
-import { Routes, Route } from "react-router-dom";
+import { Routes, Route, useLocation, useNavigate } from "react-router-dom";
 import Home from "../../pages/home/home";
 import Notfoundpage from "../../pages/not-found-page/not-found-page";
 import ResetPassword from "../../pages/reset-password/reset-password";
@@ -7,23 +7,50 @@ import Register from "../../pages/register/register";
 import Login from "../../pages/login/login";
 import FogotPassword from "../../pages/forgot-password/forgot-password";
 import Profile from "../../pages/profile/profile";
+import IngredientDetailsPage from "../../pages/ingredient-deteils-page/ingredient-details-page";
+import Modal from "../modals/modals";
+import IngredientDetails from "../inrredient-details/inredient-details";
+import ProtectedRoute from "../protected-route";
 
 import styles from "./app.module.css";
 
 function App() {
+  const location = useLocation();
+  const navigate = useNavigate();
+  const background = location.state && location.state.background;
+
+  const handleClose = () => {
+    navigate(-1);
+  };
+
   return (
     <main className={styles.app}>
       <AppHeader />
-      <Routes>
-        {/* <Route path="/" element={<FogotPassword />}></Route> */}
-        {/* <Route path="/" element={<Login />}></Route> */}
-        {/* <Route path="/" element={<Register />}></Route> */}
-        {/* <Route path="/" element={<ResetPassword/>}></Route> */}
+      <Routes location={background || location}>
         <Route path="/" element={<Home />}></Route>
-        {/* <Route path="/" element={<Profile />}></Route> */}
-
+        <Route path="forgotpassword" element={<FogotPassword />}></Route>
+        <Route path="login" element={<Login />}></Route>
+        <Route path="register" element={<Register />}></Route>
+        <Route path="resetpassword" element={<ResetPassword />}></Route>
+        <Route path="profile" element={<Profile />}></Route>
+        <Route
+          path="/ingredients/:ingredientId"
+          element={<IngredientDetailsPage />}
+        />
         <Route path="*" element={<Notfoundpage />} />
       </Routes>
+      {background && (
+        <Routes>
+          <Route
+            path="/ingredients/:ingredientId"
+            element={
+              <Modal handleClose={handleClose}>
+                <IngredientDetails />
+              </Modal>
+            }
+          />
+        </Routes>
+      )}
     </main>
   );
 }
