@@ -24,7 +24,7 @@ import {
 const Ingredient = ({ ingredient }) => {
   const location = useLocation();
   const ingredientId = ingredient["_id"];
-  
+
   const dispatch = useDispatch();
   const [isModalOpen, setIsModalOpen] = useState(false);
 
@@ -52,10 +52,10 @@ const Ingredient = ({ ingredient }) => {
 
   return (
     <Link
+      className={styles.IngregientConteiner}
       key={ingredientId}
       to={`/ingredients/${ingredientId}`}
       state={{ background: location }}
-      className={styles.IngregientConteiner}
       ref={dragRef}
     >
       {count > 0 && <Counter count={count} size="default" />}
@@ -72,11 +72,11 @@ const Ingredient = ({ ingredient }) => {
       <p className={`${styles.imgText} text text_type_main-small`}>
         {ingredient.name}
       </p>
-      {isModalOpen && (
+      {/* {isModalOpen && (
         <Modal handleClose={closeModal}>
           <IngredientDetails ingredient={ingredient} />
         </Modal>
-      )}
+      )} */}
     </Link>
   );
 };

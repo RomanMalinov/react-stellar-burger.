@@ -1,12 +1,20 @@
+import { useEffect } from "react";
+import { useSelector, useDispatch } from "react-redux";
+import { useParams } from "react-router-dom";
 import styles from "./inredient-details.module.css";
 import PropTypes from "prop-types";
 import ingredientPropType from "../../utils/prop-types";
-import { useSelector } from "react-redux";
+import { getActiveIngredient } from "../../services/ingredientDetailsSlice";
+import { setCurrentInformationIngredient } from "../../services/ingredientDetailsSlice";
 
 const IngredientDetails = () => {
+  const { ingredientId } = useParams();
+  const allIngredients = useSelector((state) => state.ingredientList.ingredients);
+  const ingredient = allIngredients.find((item) => item._id === ingredientId);
 
-  const ingredient = useSelector((state) => state.ingredientDetails.ingredient);
-
+  if (!ingredient) {
+    return <div>Ингредиент не найден</div>;
+  }
   return (
     <section className={`${styles.conteiner}`}>
       <h3 className={`${styles.title} text text_type_main-large`}>
@@ -23,7 +31,6 @@ const IngredientDetails = () => {
       <div
         className={`${styles.conteinerNutritions} text text_type_main-default text_color_inactive`}
       >
-        {/* перенести в род контерйнер общие свойства дочек */}
         <div>
           <p>Калории,ккал</p>
           <p>{ingredient.calories}</p>
@@ -50,5 +57,3 @@ IngredientDetails.propTypes = {
 };
 
 export default IngredientDetails;
-
-

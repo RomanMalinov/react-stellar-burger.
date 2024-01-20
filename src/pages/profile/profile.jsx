@@ -1,29 +1,49 @@
-import {
-  EmailInput,
-  Input,
-  PasswordInput,
-  Button,
-} from "@ya.praktikum/react-developer-burger-ui-components";
+import { useDispatch } from "react-redux";
+import { Link, Outlet, useNavigate, useLocation } from "react-router-dom";
 import styles from "./profile.module.css";
-import { Link } from "react-router-dom";
+import { fetchLogout } from "../../services/authSlice";
 
 function Profile() {
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+  const location = useLocation();
+
+  const handleLogout = async () => {
+    dispatch(fetchLogout());
+    navigate("/login");
+  };
+
+  const isProfileActive = location.pathname === "/profile";
+  const isOrderActive = location.pathname === "/order";
+
   return (
     <main className={`${styles.main} pl-10`}>
       <nav className={styles.navLinks}>
         <p className="text text_type_main-medium pt-4 pb-4">
-          <Link to={""} className={`${styles.link} text_color_primary`}>
+          <Link
+            to={"/profile"}
+            className={`${styles.link}  ${
+              isProfileActive ? "text_color_primary" : "text_color_inactive"
+            }`}
+          >
             Профиль
           </Link>
         </p>
-        {/* доделать переключение активности у сслылок и маршруты */}
         <p className="text text_type_main-medium pt-4 pb-4 ">
-          <Link to={""} className={`${styles.link}  text_color_inactive`}>
+          <Link
+            to={"/order"}
+            className={`${styles.link}  ${
+              isOrderActive ? "text_color_primary" : "text_color_inactive"
+            }`}
+          >
             История заказов
           </Link>
         </p>
         <p className="text text_type_main-medium pt-4 pb-4 ">
-          <Link to={""} className={`${styles.link} text_color_inactive`}>
+          <Link
+            onClick={handleLogout}
+            className={`${styles.link} text_color_inactive`}
+          >
             Выход
           </Link>
         </p>
@@ -31,26 +51,7 @@ function Profile() {
           В этом разделе вы можете изменить свои персональные данные
         </p>
       </nav>
-
-      <div className={styles.form}>
-        <form className={styles.formConteiner}>
-          <Input icon="EditIcon" placeholder="Имя" name={"name"} />
-          <EmailInput placeholder="Логин" name={"email"} isIcon={true} />
-          <PasswordInput
-            placeholder="Пароль"
-            name={"password"}
-            icon="EditIcon"
-          />
-          <div className={styles.buttons}>
-            {/* <Button htmlType="button" type="secondary" size="medium">
-              Отменить
-            </Button>
-            <Button htmlType="submit" type="primary" size="medium">
-              Сохранить
-            </Button> */}
-          </div>
-        </form>
-      </div>
+      <Outlet />
     </main>
   );
 }

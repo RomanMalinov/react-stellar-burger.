@@ -1,3 +1,6 @@
+import { useState } from "react";
+import { useNavigate } from "react-router-dom";
+import { useDispatch } from "react-redux";
 import styles from "./login.module.css";
 import ConteinerLink from "../../components/form/conteiner-link/conteiner-link";
 import {
@@ -5,58 +8,53 @@ import {
   PasswordInput,
   Button,
 } from "@ya.praktikum/react-developer-burger-ui-components";
-function Login() {
-  return (
-<>
-<div className={styles.mainConteiner}>
-      <h2 className={`${styles.title} text text_type_main-medium`}>Вход</h2>
-      <form className={styles.formConteiner}>
-        <EmailInput name={"emailLogin"} placeholder="E-mail" />
-        <PasswordInput name={"passwordLogin"} placeholder="Пароль" />
-        <Button size="medium" type="primary" htmlType="submit">
-          Войти
-        </Button>
-      </form>
+import { fetchLoginUser } from "../../services/authSlice";
 
-    </div>
-          <ConteinerLink text="Вы — новый пользователь?" textLink="Зарегистрироваться" />
-          <ConteinerLink text="Забыли пароль?"  textLink="Восстановить пароль"/>
-</>
+function Login() {
+  const navigate = useNavigate();
+  const dispatch = useDispatch();
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+
+  const handleLogin = async (e) => {
+    e.preventDefault();
+    await dispatch(fetchLoginUser({ email, password }));
+    navigate("/profile");
+  };
+  return (
+    <>
+      <div className={styles.mainConteiner}>
+        <h2 className={`${styles.title} text text_type_main-medium`}>Вход</h2>
+        <form className={styles.formConteiner} onSubmit={handleLogin}>
+          <EmailInput
+            name="emailLogin"
+            placeholder="E-mail"
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
+          />
+          <PasswordInput
+            name="passwordLogin"
+            placeholder="Пароль"
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
+          />
+          <Button size="medium" type="primary" htmlType="submit">
+            Войти
+          </Button>
+        </form>
+      </div>
+      <ConteinerLink
+        path={"/register"}
+        text="Вы — новый пользователь?"
+        textLink="Зарегистрироваться"
+      />
+      <ConteinerLink
+        path={"/forgotPassword"}
+        text="Забыли пароль?"
+        textLink="Восстановить пароль"
+      />
+    </>
   );
 }
 
 export default Login;
-
-// import Form from "../../components/form/form";
-// import ConteinerLink from "../../components/form/conteiner-link/conteiner-link";
-// import { Input } from "@ya.praktikum/react-developer-burger-ui-components";
-
-// function Login() {
-//   return (
-//     <div>
-//       <Form titleForm="Вход" buttonText="Войти">
-//         <Input
-//          placeholder={"E-mail"}
-//          />
-//         <Input
-//          placeholder="Пароль"
-//          icon={"ShowIcon"}
-//           />
-//       </Form>
-//       <ConteinerLink
-//         	text="Вы — новый пользователь?"
-//           textLink="Зарегистрироваться"
-//           // path={}
-//       />
-//          <ConteinerLink
-//         	text="Забыли пароль??"
-//           textLink="Восстановить пароль"
-//           // path={}
-//       />
-
-//     </div>
-
-//   );
-// }
-
-// export default Login;

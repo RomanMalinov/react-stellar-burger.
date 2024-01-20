@@ -5,6 +5,7 @@
   "dependencies": {
     "@reduxjs/toolkit": "^1.9.7",
     "@ya.praktikum/react-developer-burger-ui-components": "^1.14.0",
+    "axios": "^1.6.5",
     "clsx": "^1.2.1",
     "immutability-helper": "^3.1.1",
     "prop-types": "^15.8.1",

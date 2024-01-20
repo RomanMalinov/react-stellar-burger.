@@ -3,7 +3,7 @@ import constructorIngedientSlice from "./constructorIngedientSlice";
 import ingredientDetailsSlice from "./ingredientDetailsSlice";
 import orderDetailsSlice from "./orderDetailsSlice";
 import ingredienListSlice from "./ingredientListSlice";
-
+import authSlice from "./authSlice";
 
 const store = configureStore({
   reducer: {
@@ -11,6 +11,7 @@ const store = configureStore({
     constructorIngedient: constructorIngedientSlice,
     orderDetails: orderDetailsSlice,
     ingredientList: ingredienListSlice,
+    auth: authSlice,
   },
 });
 

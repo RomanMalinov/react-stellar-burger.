@@ -7,7 +7,6 @@
   padding: 16px 0;
   justify-content: space-between;
   background-color: #1c1c21;
-  outline: 2px gold solid;
 }
 
 .conteiner {
@@ -19,15 +18,9 @@
   display: flex;
   flex-direction: row;
   gap: 48px;
-  outline: 2px white solid;
 }
 
 .link {
-  /* font-family: JetBrains Mono;
-  font-size: 16px;
-  font-style: normal;
-  font-weight: 400;
-  line-height: 24px; */
   align-items: center;
   display: flex;
   align-items: center;
@@ -40,27 +33,16 @@
   margin-left: 8px;
 }
 
-
-
-/* .logo {
-  border: 2px solid red;
-  margin-left: 132px;
-
-} */
-
-
 .headerActive {
   color: #f2f2f3;
 }
 
 .link:hover {
   transition: 1s;
-  opacity: .6
+  opacity: 0.6;
 }
 
 .logo:hover {
   transition: 1s;
-  opacity: .6
+  opacity: 0.6;
 }
-
-
