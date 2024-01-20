@@ -19,16 +19,15 @@ import OrederHistory from "../../pages/oreder-history/oreder-history";
 import styles from "./app.module.css";
 import { fetchGetUserData } from "../../services/authSlice";
 
-
 function App() {
   const location = useLocation();
   const navigate = useNavigate();
   const background = location.state && location.state.background;
   const dispatch = useDispatch();
 
-    useEffect(() => {
-    dispatch(fetchGetUserData())
-  }, [dispatch])
+  useEffect(() => {
+    dispatch(fetchGetUserData());
+  }, [dispatch]);
 
   const handleClose = () => {
     navigate(-1);
@@ -37,37 +36,54 @@ function App() {
   return (
     <main className={styles.app}>
       <AppHeader />
-        <>
+      <>
         <Routes location={background || location}>
           <Route path="/" element={<Home />}></Route>
-          <Route path="forgotpassword" element={<CommonRoute element={<FogotPassword />} />}></Route>
-          <Route path="login" element={<CommonRoute element={<Login />} />}></Route>
-          <Route path="register"element={<CommonRoute element={<Register />} />} ></Route>
-          <Route path="resetpassword"element={<CommonRoute element={<ResetPassword />}/>} ></Route>
-          <Route path="/"   element={<ProtectedRoute element={<Profile />} />}       >
-              <Route path="profile"  element={<ProtectedRoute element={<ProfileForm />} />}  />
-              <Route path="order" element={<ProtectedRoute element={<OrederHistory/>} />}  />
+          <Route
+            path="forgotpassword"
+            element={<CommonRoute element={<FogotPassword />} />}
+          ></Route>
+          <Route
+            path="login"
+            element={<CommonRoute element={<Login />} />}
+          ></Route>
+          <Route
+            path="register"
+            element={<CommonRoute element={<Register />} />}
+          ></Route>
+          <Route
+            path="resetpassword"
+            element={<CommonRoute element={<ResetPassword />} />}
+          ></Route>
+          <Route path="/" element={<ProtectedRoute element={<Profile />} />}>
+            <Route
+              path="profile"
+              element={<ProtectedRoute element={<ProfileForm />} />}
+            />
+            <Route
+              path="order"
+              element={<ProtectedRoute element={<OrederHistory />} />}
+            />
           </Route>
           <Route
             path="/ingredients/:ingredientId"
             element={<IngredientDetailsPage />}
           />
           <Route path="*" element={<Notfoundpage />} />
-       </Routes>
-         {background && (
-         <Routes>
-           <Route
+        </Routes>
+        {background && (
+          <Routes>
+            <Route
               path="/ingredients/:ingredientId"
               element={
-              <Modal handleClose={handleClose}>
-                <IngredientDetails />
-              </Modal>
-            }
-          />
-        </Routes>
-      )}
-           </>
-
+                <Modal handleClose={handleClose}>
+                  <IngredientDetails />
+                </Modal>
+              }
+            />
+          </Routes>
+        )}
+      </>
     </main>
   );
 }
