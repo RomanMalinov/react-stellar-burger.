@@ -12,7 +12,6 @@ function ProtectedRoute({ element }) {
 
   return user.email ? element : <Navigate to="/login" replace />;
 }
-
 ProtectedRoute.propTypes = {
   element: PropTypes.element.isRequired,
 };

@@ -26,6 +26,7 @@ const ResetPassword = () => {
 
   useEffect(() => {
     if (!reset) {
+      navigate("/forgotpassword");
     }
   }, [reset, navigate]);
 

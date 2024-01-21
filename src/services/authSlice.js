@@ -50,7 +50,7 @@ const userSlice = createSlice({
       email: "",
       name: "",
     },
-    isLoading: false,
+
   },
   extraReducers: (builder) => {
     builder
@@ -158,4 +158,5 @@ const userSlice = createSlice({
 
 export const { refresh } = userSlice.actions;
 export const getUser = (state) => state.auth.user;
+export const loadState = (state) => state.auth.isLoading;
 export default userSlice.reducer;

@@ -19,9 +19,11 @@ function FogotPassword() {
     if (!email) {
       return;
     }
-    dispatch(fetchPasswordReset({ email })).then(() =>
-      navigate("/resetpassword")
-    );
+    dispatch(fetchPasswordReset({ email })).then((data) => {
+      if (data?.payload?.success) {
+        navigate("/resetpassword", { state: { reset: true } });
+      }
+    });
   };
 
   return (
@@ -40,7 +42,7 @@ function FogotPassword() {
           Восстановить
         </Button>
       </form>
-      <ConteinerLink text="Вспомнили пароль?" textLink="Войти" />
+      <ConteinerLink path={"/login"} text="Вспомнили пароль?" textLink="Войти" />
     </div>
   );
 }
