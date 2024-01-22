@@ -2,7 +2,7 @@ import { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { useParams } from "react-router-dom";
 import styles from "./inredient-details.module.css";
-import PropTypes from "prop-types";
+import propTypes from "prop-types";
 import ingredientPropType from "../../utils/prop-types";
 import { getActiveIngredient } from "../../services/ingredientDetailsSlice";
 import { setCurrentInformationIngredient } from "../../services/ingredientDetailsSlice";
