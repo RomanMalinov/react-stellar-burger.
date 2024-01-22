@@ -1,12 +1,10 @@
 .constructorConteiner {
-  margin-top: 100px; /*должен быть 100px */
+  margin-top: 100px;
   width: 600px;
   height: 912px;
   height: 820px;
   display: flex;
   flex-direction: column;
-  /* align-items: center;
-  justify-content: center;  */
 }
 
 .elementsConteiner {
@@ -19,14 +17,12 @@
 .listInternalConteiner {
   margin: 0;
   padding: 16px 15px 0 0;
-
   list-style-type: none;
   display: flex;
   flex-direction: column;
   overflow-y: scroll;
   overflow-x: hidden;
   max-height: 464px;
-  /* outline: 1px solid red; */
 }
 
 .item {
@@ -35,7 +31,6 @@
   width: 568px;
   display: flex;
   align-items: center;
-  /* outline: 1px solid green */
 }
 
 .priceConteiner {
@@ -46,18 +41,7 @@
   flex-direction: row;
   align-items: center;
   justify-content: end;
-
 }
-
-/* .textSum {
-  outline: 2px red solid;
-  text-align: right;
-  font-family: Iceland;
-  font-size: 48px;
-  font-style: normal;
-  font-weight: 400;
-  line-height: 36px;
-} */
 
 .cont {
   margin-right: 40px;

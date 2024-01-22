@@ -1,0 +1,20 @@
+.main {
+  margin-top: 80px;
+  width: 1280px;
+  padding: 0;
+  display: flex;
+}
+
+.navLinks {
+  margin-right: 60px;
+  max-width: 320px;
+}
+
+.link {
+  text-decoration: none;
+}
+
+.link:hover {
+  transition: 1s;
+  opacity: 0.5;
+}

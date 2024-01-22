@@ -1,0 +1,17 @@
+.textConteiner {
+  margin-bottom: 16px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  column-gap: 8px;
+}
+
+.link {
+  text-decoration: none;
+  color: #4c4cff;
+}
+
+.link:hover {
+  transition: 1s;
+  opacity: 0.8;
+}
