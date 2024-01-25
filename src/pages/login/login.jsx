@@ -16,9 +16,9 @@ function Login() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
-  const handleLogin = async (e) => {
+  const handleLogin =  (e) => {
     e.preventDefault();
-    await dispatch(fetchLoginUser({ email, password }));
+   dispatch(fetchLoginUser({ email, password }));
     navigate("/profile");
   };
   return (

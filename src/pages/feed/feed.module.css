@@ -1,0 +1,43 @@
+.feed {
+   width: 1280px;
+   height: 1000px;/* временно */
+   outline: red 2px solid;
+}
+
+
+.mainConteiner {
+  height: 800px;/* временно */
+  display: flex;
+  flex-direction: row;
+  gap: 60px;
+  outline: green 2px solid;
+}
+/* _________________________________________ */
+
+.ordersInfo {
+  display: flex;
+  gap: 36px
+}
+
+.sectionInfo {
+  max-width: 580px;
+  width: 100%;
+  outline: green 2px solid;
+}
+
+.title {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  outline: gold 2px solid;
+}
+
+.sum {
+  /* text-shadow: #3333ff80 0 0 20px; */
+  outline: gold 2px solid;
+}
+/* ________________________________________ */
+
+.done {
+  color: #00CCCC;
+}

@@ -26,7 +26,7 @@ const AppHeader = () => {
             <p className="text text_type_main-default">Конструктор</p>
           </NavLink>
           <NavLink
-            to={"/order"}
+            to={"/feed"}
             className={({ isActive }) =>
               `${styles.link} text text_type_main-small ${
                 isActive ? styles.headerActive : ""

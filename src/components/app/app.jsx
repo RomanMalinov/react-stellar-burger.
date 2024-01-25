@@ -15,10 +15,12 @@ import IngredientDetails from "../inrredient-details/inredient-details";
 import ProtectedRoute from "../protected-route";
 import CommonRoute from "../common-router";
 import ProfileForm from "../profile-form/profile-form";
-import OrederHistory from "../../pages/oreder-history/oreder-history";
+import OrederHistory from "../../pages/profile-orders/profile-orders";
+import Feed from "../../pages/feed/feed";
 import styles from "./app.module.css";
 import { fetchGetUserData, loadState } from "../../services/authSlice";
 import Loader from "../loader/loader";
+
 
 function App() {
   const location = useLocation();
@@ -42,6 +44,7 @@ function App() {
         <>
           <Routes location={background || location}>
             <Route path="/" element={<Home />}></Route>
+            <Route path="/feed" element={<Feed />}></Route>
             <Route
               path="forgotpassword"
               element={<CommonRoute element={<FogotPassword />} />}
