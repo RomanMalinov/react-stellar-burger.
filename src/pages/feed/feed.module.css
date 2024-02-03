@@ -1,43 +1,69 @@
-.feed {
-   width: 1280px;
-   height: 1000px;/* временно */
-   outline: red 2px solid;
-}
-
-
-.mainConteiner {
-  height: 800px;/* временно */
+.feedConteiner {
+  margin-top: 40px;
+  width: 1240px;
   display: flex;
-  flex-direction: row;
-  gap: 60px;
-  outline: green 2px solid;
+  justify-content: center;
+  gap: 40px;
 }
-/* _________________________________________ */
 
-.ordersInfo {
+.mainTitle {
+  margin: 0 0 0 8px;
+  align-self: flex-start;
+}
+
+.cardsConteiner {
+  margin: 0;
+  padding: 0;
   display: flex;
-  gap: 36px
+  flex-direction: column;
+  gap: 16px;
+  max-width: 608px;
+  height: 100vh;
+  overflow-y: scroll;
+  overflow-x: hidden;
 }
 
-.sectionInfo {
-  max-width: 580px;
-  width: 100%;
-  outline: green 2px solid;
+.statsConteiner {
+  height: 626px;
+  width: 580px;
+  display: grid;
 }
 
-.title {
+.tablesConteiner {
   display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-  outline: gold 2px solid;
+  gap: 36px;
 }
 
-.sum {
-  /* text-shadow: #3333ff80 0 0 20px; */
-  outline: gold 2px solid;
+.listContainer {
+  height: 206px;
+  margin: 0;
+  width: 272px;
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
 }
-/* ________________________________________ */
+
+.list {
+  height: 160px;
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.listTitle {
+}
+
+.countConteiner {
+  margin-top: 60px;
+  width: 580px;
+}
+
+.textShadow {
+  text-shadow: 0px 4px 32px rgba(51, 51, 255, 0.5),
+    0px 0px 8px rgba(51, 51, 255, 0.25), 0px 0px 16px rgba(51, 51, 255, 0.25);
+}
 
 .done {
-  color: #00CCCC;
+  color: #00cccc;
 }

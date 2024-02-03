@@ -1,5 +1,8 @@
 import { getCookie, setCookie } from "./cookie";
 
+export const ORDER_API_URL = "wss://norma.nomoreparties.space/orders/all";
+
+
 const BURGER_API_URL = "https://norma.nomoreparties.space/api";
 
 const headers = {
@@ -19,7 +22,10 @@ export const getIngredients = async () => {
 export function getOrder(ingredients) {
   const url = `${BURGER_API_URL}/orders`;
   return fetch(url, {
-    headers: { ...headers },
+    headers: {
+      ...headers,
+      authorization: "Bearer " + getCookie("accessToken"),
+    },
     method: "POST",
     body: JSON.stringify({ ingredients }),
   }).then(checkResponse);

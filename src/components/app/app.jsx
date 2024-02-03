@@ -15,12 +15,12 @@ import IngredientDetails from "../inrredient-details/inredient-details";
 import ProtectedRoute from "../protected-route";
 import CommonRoute from "../common-router";
 import ProfileForm from "../profile-form/profile-form";
-import OrederHistory from "../../pages/profile-orders/profile-orders";
+import OrderHistory from "../../pages/oreder-history/oreder-history";
 import Feed from "../../pages/feed/feed";
 import styles from "./app.module.css";
 import { fetchGetUserData, loadState } from "../../services/authSlice";
 import Loader from "../loader/loader";
-
+import OrderInfo from "../order-info/order-info"; //тест одального окна
 
 function App() {
   const location = useLocation();
@@ -45,6 +45,7 @@ function App() {
           <Routes location={background || location}>
             <Route path="/" element={<Home />}></Route>
             <Route path="/feed" element={<Feed />}></Route>
+            <Route path="/feed/:number" element={<OrderInfo />}></Route>
             <Route
               path="forgotpassword"
               element={<CommonRoute element={<FogotPassword />} />}
@@ -67,8 +68,12 @@ function App() {
                 element={<ProtectedRoute element={<ProfileForm />} />}
               />
               <Route
-                path="order"
-                element={<ProtectedRoute element={<OrederHistory />} />}
+                path="/profile/orders"
+                element={<ProtectedRoute element={<OrderHistory />} />}
+              />
+              <Route
+                path="/profile/orders/:number"
+                element={<ProtectedRoute element={<OrderHistory />} />}
               />
             </Route>
             <Route
@@ -84,6 +89,22 @@ function App() {
                 element={
                   <Modal handleClose={handleClose}>
                     <IngredientDetails />
+                  </Modal>
+                }
+              />
+              <Route
+                path="/feed/:number"
+                element={
+                  <Modal handleClose={handleClose}>
+                    <OrderInfo />
+                  </Modal>
+                }
+              />
+              <Route
+                path="/profile/orders/:number"
+                element={
+                  <Modal handleClose={handleClose}>
+                    <OrderInfo />
                   </Modal>
                 }
               />

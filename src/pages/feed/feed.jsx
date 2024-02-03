@@ -1,31 +1,95 @@
+import { useEffect, useMemo } from "react";
+import { useDispatch } from "react-redux";
+import { useSelector } from "react-redux";
+import {
+  connect as connectFeed,
+  disconnect as disconnectFeed,
+} from "../../services/feedSlice";
+import OrderCardIngredient from "../../components/order-card-ingredient/order-card-ingredient";
 import styles from "./feed.module.css";
-import OrderCards from "../../components/order-cards/order-cards";
-import InfoBox from "../../components/infoBox/info-box";
 
-function Feed() {
+export default function Feed() {
+  const dispatch = useDispatch();
+  const { orders, total, totalToday } = useSelector((state) => state.feed);
+
+  const done = useMemo(
+    () => orders.filter((item) => item.status === "done").slice(0, 10),
+    [orders]
+  );
+  const activeOrders = useMemo(
+    () => orders.filter((item) => item.status !== "done").slice(0, 10),
+    [orders]
+  );
+
+  useEffect(() => {
+    dispatch(connectFeed(`wss://norma.nomoreparties.space/orders/all`));
+    return () => dispatch(disconnectFeed());
+  }, [dispatch]);
+
   return (
-    <section className={styles.feed}>
-      <h2 className={`${styles.title} text text_type_main-large mt-10 mb-5`}>
-        Лента заказов
-      </h2>
-      <div className={styles.mainConteiner}>
-        <OrderCards />
-
-        <div className={`${styles.sectionInfo}`}>
-          <div className={`${styles.ordersInfo}`}>
-               <InfoBox name={"Готовы:"}/>
-               <InfoBox  name={"В работе:"}/>
+    <section className={`${styles.feedConteiner} `}>
+      <div className={`${styles.cardsConteiner} custom-scroll`}>
+        <h2 className={`${styles.mainTitle} text text_type_main-large`}>
+          Лента заказов
+        </h2>
+        {orders.map((order) => (
+          <OrderCardIngredient orderData={order} key={order._id} />
+        ))}
+      </div>
+      <div className={styles.statsConteiner}>
+        <div className={styles.tablesConteiner}>
+          <div className={`${styles.listContainer} mr-9`}>
+            <h3 className={`${styles.listTitle} text text_type_main-medium`}>
+              Готовы:
+            </h3>
+            <div className={styles.list}>
+              {done.map((item) => {
+                return (
+                  <p
+                    key={item.number}
+                    className={`${styles.done} text text_type_digits-default`}
+                  >
+                    {item.number}
+                  </p>
+                );
+              })}
+            </div>
           </div>
-            <h3 className={`${styles.title} text text_type_main-medium mt-15`}>Выполнено за все время:</h3>
-            <p className={`${styles.sum} text text_type_digits-large`}>455444</p>
-            <h3 className={`${styles.title} text text_type_main-medium mt-15`}>Выполнено за сегодня:</h3>
-            <p className={`${styles.sum} text text_type_digits-large`}>45545454</p>
+          <div className={styles.listContainer}>
+            <h3 className={`${styles.listTitle} text text_type_main-medium`}>
+              В работе:
+            </h3>
+            <div className={styles.list}>
+              {activeOrders.length > 0 ? (
+                activeOrders.map((item) => (
+                  <p
+                    key={item.number}
+                    className="text text_type_digits-default"
+                  >
+                    {item.number}
+                  </p>
+                ))
+              ) : (
+                <p className="text text_type_main-medium">Заказы готовы</p>
+              )}
+            </div>
+          </div>
         </div>
-
-
+        <div className={styles.countConteiner}>
+          <h3 className="text text_type_main-medium">
+            Выполнено за все время:
+          </h3>
+          <div className={`${styles.textShadow} text text_type_digits-large`}>
+            {total}
+          </div>
+        </div>
+        <div className={`${styles.countConteiner} `}>
+          <h3 className="text text_type_main-medium">Выполнено за сегодня:</h3>
+          <div className={`${styles.textShadow} text text_type_digits-large`}>
+            {totalToday}
+          </div>
+        </div>
       </div>
     </section>
   );
 }
-
-export default Feed;

@@ -1,42 +1,89 @@
-import styles from "./order-card-ingredient.module.css";
+import { Link, useLocation } from "react-router-dom";
+import { useMemo } from "react";
+import { useSelector } from "react-redux";
 import {
   FormattedDate,
   CurrencyIcon,
 } from "@ya.praktikum/react-developer-burger-ui-components";
-import { Link } from "react-router-dom";
+import styles from "./order-card-ingredient.module.css";
 
-function OrderCardIngredient() {
+export default function OrderCardIngredient({ orderData }) {
+  const location = useLocation();
+
+  const { ingredients } = useSelector((state) => state.ingredientList);
+
+  const orderIngredients = useMemo(() => {
+    return orderData.ingredients
+      .map((id) => {
+        const ingredient = ingredients.find((item) => item._id === id);
+        return ingredient ? { ...ingredient } : null;
+      })
+      .filter(Boolean);
+  }, [orderData.ingredients, ingredients]);
+
+  const url = useMemo(() => {
+    return location.pathname === "/feed"
+      ? `/feed/${orderData.number}`
+      : location.pathname === "/profile/orders"
+      ? `/profile/orders/${orderData.number}`
+      : "/";
+  }, [location, orderData.number]);
+
+  const calculateTotalPrice = useMemo(() => {
+    return orderIngredients.reduce((total, ingredient) => {
+      return total + (ingredient.price || 0);
+    }, 0);
+  }, [orderIngredients]);
+
+  const extraItemsCount = orderIngredients?.slice(6).length;
+
   return (
-    <Link className={styles.conteiner}>
-      <div className={styles.numberDate}>
-        <p className={`${styles.number} text text_type_digits-default`}>
-          fdfdfdfd
-        </p>
-        <p
-          className={`${styles.date} text text_type_main-default text_color_inactive`}
-        >
-          {/* <FormattedDate /> */}dffddffd
-        </p>
-      </div>
-      <h4 className={`${styles.info} text text_type_main-medium`}>
-        544444444444454554
-      </h4>
-      {/* логика создан, готово, готовится */}
-      <div className={styles.ingredients}>
-
-          <div className={styles.ingredientsInnerConteiner}>
-            <img className={styles.img} src="" alt="" />
-            <div className={styles.counter}>
-              <p className="text text_type_digits-default">0</p>
-            </div>
+    <Link
+      className={styles.linkСonteiner}
+      to={url}
+      state={{ background: location }}
+    >
+      <div className={styles.cardConteiner}>
+        <div className={styles.namberInfo}>
+          <p className="text text_type_main-default">#{orderData.number}</p>
+          <p>
+            <FormattedDate
+              date={new Date(orderData.createdAt)}
+              className="text_color_inactive text text_type_main-default"
+            />
+          </p>
+        </div>
+        <p className="text text_type_main-medium">{orderData.name}</p>
+        <div className={styles.orderInfo}>
+          <div className={styles.imgConteiner}>
+            {orderIngredients.map((item, index) => {
+              if (index < 6) {
+                return (
+                  <div key={index}>
+                    <img
+                      className={styles.img}
+                      src={item.image}
+                      alt="img"
+                    />
+                    {index === 5 && extraItemsCount !== 0 && (
+                      <div className={styles.counter}>
+                        <p className="text text_type_digits-default">{`+${extraItemsCount}`}</p>
+                      </div>
+                    )}
+                  </div>
+                );
+              }
+              return null;
+            })}
           </div>
-          <div className={styles.count}>
-            <p className={`text text_type_digits-default`}>443344343</p>
+          <div className={styles.conteinerPrice}>
+            <p className="text text_type_digits-medium">
+              {calculateTotalPrice}
+            </p>
             <CurrencyIcon />
           </div>
         </div>
-
+      </div>
     </Link>
   );
 }
-export default OrderCardIngredient;

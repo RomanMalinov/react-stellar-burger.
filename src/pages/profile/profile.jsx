@@ -14,7 +14,7 @@ function Profile() {
   };
 
   const isProfileActive = location.pathname === "/profile";
-  const isOrderActive = location.pathname === "/order";
+  const isOrderActive = location.pathname === "/profile/orders";
 
   return (
     <main className={`${styles.main} pl-10`}>
@@ -31,7 +31,7 @@ function Profile() {
         </p>
         <p className="text text_type_main-medium pt-4 pb-4 ">
           <Link
-            to={"/order"}
+            to={"/profile/orders"}
             className={`${styles.link}  ${
               isOrderActive ? "text_color_primary" : "text_color_inactive"
             }`}
