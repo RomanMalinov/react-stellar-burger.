@@ -5,8 +5,7 @@ import OrderCardIngredient from "../../components/order-card-ingredient/order-ca
 import styles from "./order-history.module.css";
 import { getCookie } from "../../utils/cookie";
 
-
-export default function OrderHistory() {
+function OrderHistory() {
   const dispatch = useDispatch();
   const { orders } = useSelector((state) => state.profileOrders);
 
@@ -32,3 +31,5 @@ export default function OrderHistory() {
     </div>
   );
 }
+
+export default OrderHistory;

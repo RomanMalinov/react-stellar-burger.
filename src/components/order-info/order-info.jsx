@@ -6,6 +6,7 @@ import {
 } from "@ya.praktikum/react-developer-burger-ui-components";
 import { useParams } from "react-router-dom";
 import styles from "./order-info.module.css";
+import PropTypes from "prop-types";
 
 function OrderInfo() {
   const { number } = useParams();
@@ -42,8 +43,14 @@ function OrderInfo() {
         const ingredients = orderIngredients.filter(
           (ing) => ing._id === item._id
         );
-        if (uniqueItemsList.lenght || !uniqueItemsList.find((i) => i._id === item._id)) {
-          uniqueItemsList.push({ ...ingredients[0], count: ingredients.length });
+        if (
+          uniqueItemsList.lenght ||
+          !uniqueItemsList.find((i) => i._id === item._id)
+        ) {
+          uniqueItemsList.push({
+            ...ingredients[0],
+            count: ingredients.length,
+          });
         }
         return uniqueItemsList;
       });
@@ -83,11 +90,7 @@ function OrderInfo() {
           return (
             <div className={styles.ingredient} key={item._id}>
               <div className={styles.ingredientInfo}>
-                <img
-                  className={styles.img}
-                  src={item.image}
-                  alt={item.name}
-                />
+                <img className={styles.img} src={item.image} alt={item.name} />
                 <p
                   className={`${styles.ingredientText} text text_type_main-default`}
                 >
@@ -115,5 +118,14 @@ function OrderInfo() {
     </section>
   );
 }
+OrderInfo.propTypes = {
+  order: PropTypes.shape({
+    number: PropTypes.number.isRequired,
+    name: PropTypes.string.isRequired,
+    status: PropTypes.string.isRequired,
+    createdAt: PropTypes.string.isRequired,
+    ingredients: PropTypes.arrayOf(PropTypes.string.isRequired),
+  }),
+};
 
 export default OrderInfo;

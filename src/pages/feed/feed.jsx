@@ -8,7 +8,7 @@ import {
 import OrderCardIngredient from "../../components/order-card-ingredient/order-card-ingredient";
 import styles from "./feed.module.css";
 
-export default function Feed() {
+function Feed() {
   const dispatch = useDispatch();
   const { orders, total, totalToday } = useSelector((state) => state.feed);
 
@@ -93,3 +93,5 @@ export default function Feed() {
     </section>
   );
 }
+
+export default Feed;

@@ -6,8 +6,9 @@ import {
   CurrencyIcon,
 } from "@ya.praktikum/react-developer-burger-ui-components";
 import styles from "./order-card-ingredient.module.css";
+import PropTypes from "prop-types";
 
-export default function OrderCardIngredient({ orderData }) {
+function OrderCardIngredient({ orderData }) {
   const location = useLocation();
 
   const { ingredients } = useSelector((state) => state.ingredientList);
@@ -60,11 +61,7 @@ export default function OrderCardIngredient({ orderData }) {
               if (index < 6) {
                 return (
                   <div key={index}>
-                    <img
-                      className={styles.img}
-                      src={item.image}
-                      alt="img"
-                    />
+                    <img className={styles.img} src={item.image} alt="img" />
                     {index === 5 && extraItemsCount !== 0 && (
                       <div className={styles.counter}>
                         <p className="text text_type_digits-default">{`+${extraItemsCount}`}</p>
@@ -87,3 +84,13 @@ export default function OrderCardIngredient({ orderData }) {
     </Link>
   );
 }
+
+OrderCardIngredient.propTypes = {
+  orderData: PropTypes.shape({
+    createdAt: PropTypes.string.isRequired,
+    name: PropTypes.string.isRequired,
+    ingredients: PropTypes.arrayOf(PropTypes.string).isRequired,
+  }).isRequired,
+};
+
+export default OrderCardIngredient;
