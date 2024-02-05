@@ -6,11 +6,12 @@ import propTypes from "prop-types";
 import ingredientPropType from "../../utils/prop-types";
 import { getActiveIngredient } from "../../services/ingredientDetailsSlice";
 import { setCurrentInformationIngredient } from "../../services/ingredientDetailsSlice";
+import { useMemo } from "react";
 
 const IngredientDetails = () => {
   const { ingredientId } = useParams();
   const allIngredients = useSelector((state) => state.ingredientList.ingredients);
-  const ingredient = allIngredients.find((item) => item._id === ingredientId);
+  const ingredient = useMemo(() => allIngredients.find((item) => item._id === ingredientId), [allIngredients, ingredientId])
 
   if (!ingredient) {
     return <div>Ингредиент не найден</div>;

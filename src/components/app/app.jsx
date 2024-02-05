@@ -19,6 +19,7 @@ import OrderHistory from "../../pages/oreder-history/oreder-history";
 import Feed from "../../pages/feed/feed";
 import styles from "./app.module.css";
 import { fetchGetUserData, loadState } from "../../services/authSlice";
+import { fetchIngredientList } from "../../services/ingredientListSlice";
 import Loader from "../loader/loader";
 import OrderInfo from "../order-info/order-info"; //тест одального окна
 
@@ -28,6 +29,9 @@ function App() {
   const background = location.state && location.state.background;
   const dispatch = useDispatch();
   const loading = useSelector(loadState);
+  useEffect(() => {
+    dispatch(fetchIngredientList());
+  }, [dispatch]);
 
   useEffect(() => {
     dispatch(fetchGetUserData());

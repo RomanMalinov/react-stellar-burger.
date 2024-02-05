@@ -19,7 +19,7 @@ function Login() {
   const handleLogin =  (e) => {
     e.preventDefault();
    dispatch(fetchLoginUser({ email, password }));
-    navigate("/profile");
+    navigate("/");
   };
   return (
     <>

@@ -25,7 +25,6 @@ function OrderInfo() {
     if (order) {
       return order;
     }
-    return state.order.selectedOrder?.orders[0];
   });
 
   const orderIngredients = useMemo(() => {
