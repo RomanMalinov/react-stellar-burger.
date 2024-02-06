@@ -48,8 +48,8 @@ function App() {
         <>
           <Routes location={background || location}>
             <Route path="/" element={<Home />}></Route>
-            <Route path="/feed" element={<Feed />}></Route>
-            <Route path="/feed/:number" element={<OrderInfo />}></Route>
+            <Route path="/feed" element={<Feed/>}></Route>
+            <Route path="/feed/:number" element={<Feed/>}></Route>
             <Route
               path="forgotpassword"
               element={<CommonRoute element={<FogotPassword />} />}
@@ -75,11 +75,11 @@ function App() {
                 path="/profile/orders"
                 element={<ProtectedRoute element={<OrderHistory />} />}
               />
-              <Route
+            </Route>
+            <Route
                 path="/profile/orders/:number"
                 element={<ProtectedRoute element={<OrderHistory />} />}
               />
-            </Route>
             <Route
               path="/ingredients/:ingredientId"
               element={<IngredientDetailsPage />}
@@ -100,7 +100,7 @@ function App() {
                 path="/feed/:number"
                 element={
                   <Modal handleClose={handleClose}>
-                    <OrderInfo />
+                    <OrderInfo/>
                   </Modal>
                 }
               />
@@ -108,7 +108,7 @@ function App() {
                 path="/profile/orders/:number"
                 element={
                   <Modal handleClose={handleClose}>
-                    <OrderInfo />
+                    <OrderInfo/>
                   </Modal>
                 }
               />

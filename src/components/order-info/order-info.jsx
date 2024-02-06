@@ -67,6 +67,9 @@ function OrderInfo() {
   if (!order) {
     return null;
   }
+  if (!orderIngredients) {
+    return <div>Ингредиент не найден</div>;
+  }
 
   return (
     <section className={styles.conteiner}>

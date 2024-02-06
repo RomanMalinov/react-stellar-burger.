@@ -11,7 +11,8 @@ import { useMemo } from "react";
 const IngredientDetails = () => {
   const { ingredientId } = useParams();
   const allIngredients = useSelector((state) => state.ingredientList.ingredients);
-  const ingredient = useMemo(() => allIngredients.find((item) => item._id === ingredientId), [allIngredients, ingredientId])
+  const ingredient = useMemo(() => allIngredients.find((item) =>
+  item._id === ingredientId), [allIngredients, ingredientId])
 
   if (!ingredient) {
     return <div>Ингредиент не найден</div>;
