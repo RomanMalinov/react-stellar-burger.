@@ -7,11 +7,26 @@ import styles from "./burger-constructor.module.css";
 import PropTypes from "prop-types";
 import Modal from "../modals/modals";
 import OrderDetails from "../order-details/order-details";
+import { useNavigate } from "react-router-dom";
+import { useSelector } from "react-redux";
+import { getUser } from "../../services/authSlice";
 
 const FinalPrice = ({ sum, onOrderClick }) => {
+
+  const navigate = useNavigate();
+  const user = useSelector(getUser);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const handleOpenModal = () => setIsModalOpen(true);
   const handleCloseModal = () => setIsModalOpen(false);
+
+  const handleOrderClick = () => {
+    if (!user.email) {
+      navigate("/login");
+    } else {
+      onOrderClick();
+      handleOpenModal();
+    }
+  };
 
   return (
     <section className={styles.priceConteiner}>
@@ -27,10 +42,7 @@ const FinalPrice = ({ sum, onOrderClick }) => {
         size="large"
         width="36px"
         height="36px"
-        onClick={() => {
-          onOrderClick();
-          handleOpenModal();
-        }}
+        onClick={handleOrderClick}
       >
         Оформить заказ
       </Button>
