@@ -133,7 +133,6 @@ export async function getChosenOrder(orderId) {
   const response = await fetch(`${BURGER_API_URL}${url}`, {
     headers: {
       ...headers,
-      authorization: "Bearer " + getCookie("accessToken"),
     },
     method: "GET",
   });
