@@ -49,7 +49,7 @@ function App() {
           <Routes location={background || location}>
             <Route path="/" element={<Home />}></Route>
             <Route path="/feed" element={<Feed/>}></Route>
-            <Route path="/feed/:number" element={<Feed/>}></Route>
+            <Route path="/feed/:number" element={<OrderInfo/>}></Route>
             <Route
               path="forgotpassword"
               element={<CommonRoute element={<FogotPassword />} />}
@@ -78,7 +78,7 @@ function App() {
             </Route>
             <Route
                 path="/profile/orders/:number"
-                element={<ProtectedRoute element={<OrderHistory />} />}
+                element={<ProtectedRoute element={<OrderInfo />} />}
               />
             <Route
               path="/ingredients/:ingredientId"

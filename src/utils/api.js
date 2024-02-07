@@ -2,7 +2,6 @@ import { getCookie, setCookie } from "./cookie";
 
 export const ORDER_API_URL = "wss://norma.nomoreparties.space/orders/all";
 
-
 const BURGER_API_URL = "https://norma.nomoreparties.space/api";
 
 const headers = {
@@ -111,7 +110,6 @@ export function logout() {
   }).then(checkResponse);
 }
 
-
 export function passwordReset(data) {
   const url = `${BURGER_API_URL}/password-reset`;
   return fetch(url, {
@@ -130,8 +128,14 @@ export function resetPassword(data) {
   }).then(checkResponse);
 }
 
-
-
-
-
-
+export async function getChosenOrder(orderId) {
+  const url = `/orders/${orderId}`;
+  const response = await fetch(`${BURGER_API_URL}${url}`, {
+    headers: {
+      ...headers,
+      authorization: "Bearer " + getCookie("accessToken"),
+    },
+    method: "GET",
+  });
+  return checkResponse(response);
+}

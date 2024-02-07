@@ -1,5 +1,5 @@
-import { useMemo } from "react";
-import { useSelector } from "react-redux";
+import { useEffect, useMemo } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import {
   FormattedDate,
   CurrencyIcon,
@@ -7,10 +7,18 @@ import {
 import { useParams } from "react-router-dom";
 import styles from "./order-info.module.css";
 import PropTypes from "prop-types";
+import { fetchSelectedOrderData } from "../../services/orderDetailsSlice";
 
 function OrderInfo() {
+  const dispatch = useDispatch();
   const { number } = useParams();
   const { ingredients } = useSelector((state) => state.ingredientList);
+
+  useEffect(() => {
+    if (!order) {
+      dispatch(fetchSelectedOrderData(number));
+    }
+  }, []);
 
   const order = useSelector((state) => {
     let order = state.feed.orders.find(
@@ -25,6 +33,7 @@ function OrderInfo() {
     if (order) {
       return order;
     }
+    return state.orderDetails.selectedOrder?.orders[0];
   });
 
   const orderIngredients = useMemo(() => {
@@ -65,10 +74,7 @@ function OrderInfo() {
   }, [orderIngredients]);
 
   if (!order) {
-    return null;
-  }
-  if (!orderIngredients) {
-    return <div>Ингредиент не найден</div>;
+    return <div>загрузка</div>;
   }
 
   return (
