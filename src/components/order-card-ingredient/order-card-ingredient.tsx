@@ -6,21 +6,31 @@ import {
   CurrencyIcon,
 } from "@ya.praktikum/react-developer-burger-ui-components";
 import styles from "./order-card-ingredient.module.css";
-import PropTypes from "prop-types";
+import { TOrder, TIngredient } from "../../utils/types";
 
-function OrderCardIngredient({ orderData }) {
+type TOrderCardIngredientProps = {
+  orderData: TOrder;
+};
+
+function OrderCardIngredient({ orderData }: TOrderCardIngredientProps) {
   const location = useLocation();
 
+   // дописать после птипизации Redux
+ // @ts-ignore
   const { ingredients } = useSelector((state) => state.ingredientList);
 
-  const orderIngredients = useMemo(() => {
-    return orderData.ingredients
-      .map((id) => {
-        const ingredient = ingredients.find((item) => item._id === id);
-        return ingredient ? { ...ingredient } : null;
-      })
-      .filter(Boolean);
-  }, [orderData.ingredients, ingredients]);
+  const orderIngredients = useMemo(() => orderData.ingredients.map(id => {
+    return ingredients.find((item: TIngredient)  => item._id === id) 
+}), [orderData.ingredients, ingredients]);
+
+  // const orderIngredients = useMemo(() => {
+  //   return orderData.ingredients
+  //     .map((id) => {
+  //       const ingredient = ingredients.find((item) => item._id === id);
+  //       return ingredient ? { ...ingredient } : null;
+  //     })
+  //     .filter(Boolean);
+  // }, [orderData.ingredients, ingredients]);
 
   const url = useMemo(() => {
     return location.pathname === "/feed"
@@ -77,7 +87,7 @@ function OrderCardIngredient({ orderData }) {
             <p className="text text_type_digits-medium">
               {calculateTotalPrice}
             </p>
-            <CurrencyIcon />
+            <CurrencyIcon  type='primary' />
           </div>
         </div>
       </div>
@@ -85,12 +95,6 @@ function OrderCardIngredient({ orderData }) {
   );
 }
 
-OrderCardIngredient.propTypes = {
-  orderData: PropTypes.shape({
-    createdAt: PropTypes.string.isRequired,
-    name: PropTypes.string.isRequired,
-    ingredients: PropTypes.arrayOf(PropTypes.string).isRequired,
-  }).isRequired,
-};
+
 
 export default OrderCardIngredient;

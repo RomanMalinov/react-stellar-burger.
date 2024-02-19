@@ -3,7 +3,11 @@ import { useSelector } from "react-redux";
 import { Navigate, useLocation } from "react-router-dom";
 import PropTypes from "prop-types";
 
-function ProtectedRoute({ element }) {
+type ProtectedRouteProps = {
+  element: JSX.Element
+};
+
+function ProtectedRoute({ element }: ProtectedRouteProps): JSX.Element {
   const user = useSelector(getUser);
   const location = useLocation();
 

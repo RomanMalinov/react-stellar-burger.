@@ -28,12 +28,13 @@ import profileOrdersSlice, {
   setMessage as ordersWsMessage
 } from "./profileOrderSlice"
 
-
+// const feedWsConnectTyped = feedWsConnect as ActionCreatorWithPayload<string>;
+// const ordersWsConnectTyped = ordersWsConnect as ActionCreatorWithPayload<string>;
 
 const feedWebSocketMiddleware = socketMiddleware({
   onOpen: feedWsOpen,
   onClose: feedWsClose,
-  сonnect: feedWsConnect,
+  connect: feedWsConnect,
   disconnect: feedWsDisconnect,
   connecting: feedWsConnecting,
   onError: feedWsError,
@@ -43,7 +44,7 @@ const feedWebSocketMiddleware = socketMiddleware({
 const ordersWebSocketMiddleware  = socketMiddleware({
   onOpen: ordersWsOpen,
   onClose: ordersWsClose,
-  сonnect: ordersWsConnect,
+  connect: ordersWsConnect,
   disconnect: ordersWsDisconnect,
   connecting: ordersWsConnecting,
   onError: ordersWsError,
@@ -66,3 +67,6 @@ middleware: (getDefaultMiddleware) => {
 });
 
 export default store;
+
+export type RootState = ReturnType<typeof store.getState>;
+export type AppDispatch = typeof store.dispatch;

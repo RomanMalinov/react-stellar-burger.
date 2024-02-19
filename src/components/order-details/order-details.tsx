@@ -2,6 +2,8 @@ import { useSelector } from "react-redux";
 import styles from "./order-details.module.css";
 
 const OrderDetails = () => {
+ // дописать после птипизации Redux
+ // @ts-ignore
   const orderNumber = useSelector((state) => state.orderDetails.orderNumber);
   return (
     <section className={`${styles.conteiner}`}>

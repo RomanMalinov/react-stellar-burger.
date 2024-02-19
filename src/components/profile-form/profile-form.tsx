@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, ChangeEvent, FormEvent } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import styles from "./profile-form.module.css";
 import {
@@ -8,12 +8,19 @@ import {
   Button,
 } from "@ya.praktikum/react-developer-burger-ui-components";
 import { fetchUpdateUser, getUser } from "../../services/authSlice";
+import { TUserData } from "../../utils/types";
+
+// type TUserData = {
+//   name: string;
+//   email: string;
+//   password: string;
+// }
 
 function ProfileForm() {
   const dispatch = useDispatch();
   const userData = useSelector(getUser);
 
-  const [formData, setFormData] = useState({
+  const [formData, setFormData] = useState<TUserData>({
     name: "",
     email: "",
     password: "",
@@ -27,14 +34,14 @@ function ProfileForm() {
     });
   }, [userData]);
 
-  const handleChange = (e) => {
+  const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
     setFormData({
       ...formData,
       [e.target.name]: e.target.value,
     });
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     dispatch(fetchUpdateUser(formData));
   };

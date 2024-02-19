@@ -1,5 +1,4 @@
 import { createSlice, createAction } from "@reduxjs/toolkit";
-
 import { ONLINE, OFFLINE, CONNECTING } from "../utils/const";
 
 export const connect = createAction("FEED_CONNECT");
