@@ -1,126 +1,3 @@
-// import { getCookie, setCookie } from "./cookie";
-// import { TUserData, TIngredient, TOrder } from "./types";
-
-// export const ORDER_API_URL = "wss://norma.nomoreparties.space/orders/all";
-// const BURGER_API_URL = "https://norma.nomoreparties.space/api";
-
-// const headers = {
-//   Accept: "application/json",
-//   "Content-Type": "application/json",
-// };
-
-// const checkResponse = (res) =>
-//   res.ok ? res.json() : res.json().then((err) => Promise.reject(err));
-
-// function request(url, options) {
-//   return fetch(`${BURGER_API_URL}${url}`, options).then(checkResponse);
-// }
-
-// export const getIngredients = async () => {
-//   const response = await request("/ingredients", { headers });
-//   return response.data;
-// };
-
-// export function getOrder(ingredients) {
-//   return request("/orders", {
-//     headers: {
-//       ...headers,
-//       authorization: "Bearer " + getCookie("accessToken"),
-//     },
-//     method: "POST",
-//     body: JSON.stringify({ ingredients }),
-//   });
-// }
-
-// export function loginUser(data) {
-//   return request("/auth/login", {
-//     headers,
-//     method: "POST",
-//     body: JSON.stringify(data),
-//   });
-// }
-
-// export function registerUser(userData) {
-//   return request("/auth/register", {
-//     headers,
-//     method: "POST",
-//     body: JSON.stringify(userData),
-//   });
-// }
-
-// export function updateToken() {
-//   return request("/auth/token", {
-//     headers,
-//     method: "POST",
-//     body: JSON.stringify({ token: getCookie("refreshToken") }),
-//   }).then((data) => {
-//     setCookie("accessToken", data.accessToken.split("Bearer ")[1]);
-//     setCookie("refreshToken", data.refreshToken);
-//   });
-// }
-
-// export async function getUserData() {
-//   try {
-//     const response = await request("/auth/user", {
-//       headers: {
-//         ...headers,
-//         authorization: "Bearer " + getCookie("accessToken"),
-//       },
-//       method: "GET",
-//     });
-//     return response;
-//   } catch (err) {
-//     if (err.message === "jwt expired" && getCookie("refreshToken")) {
-//       await updateToken();
-//       return getUserData();
-//     }
-//     throw err;
-//   }
-// }
-
-// export async function updateUserData(userData) {
-//   return request("/auth/user", {
-//     headers: {
-//       "Content-Type": "application/json;charset=utf-8",
-//       authorization: "Bearer " + getCookie("accessToken"),
-//     },
-//     method: "PATCH",
-//     body: JSON.stringify(userData),
-//   });
-// }
-
-// export function logout() {
-//   return request("/auth/logout", {
-//     headers,
-//     method: "POST",
-//     body: JSON.stringify({ token: getCookie("refreshToken") }),
-//   });
-// }
-
-// export function passwordReset(data) {
-//   return request("/password-reset", {
-//     headers,
-//     method: "POST",
-//     body: JSON.stringify(data),
-//   });
-// }
-
-// export function resetPassword(data) {
-//   return request("/password-reset/reset", {
-//     headers,
-//     method: "POST",
-//     body: JSON.stringify(data),
-//   });
-// }
-
-// export async function getChosenOrder(orderId) {
-//   return request(`/orders/${orderId}`, {
-//     headers,
-//     method: "GET",
-//   });
-// }
-
-
 import { getCookie, setCookie } from "./cookie";
 import { TUserData, TIngredient, TOrder } from "./types";
 
@@ -138,7 +15,7 @@ const headers: THeaders = {
 };
 
 const checkResponse = (res: Response) =>
-    res.ok ? res.json() : res.json().then((err) => Promise.reject(err));
+  res.ok ? res.json() : res.json().then((err) => Promise.reject(err));
 
 function request<T>(url: string, options: RequestInit): Promise<T> {
   return fetch(`${BURGER_API_URL}${url}`, options).then(checkResponse);
@@ -197,11 +74,11 @@ export async function getUserData(): Promise<TUserData> {
       method: "GET",
     });
     return response;
-  } catch (err) {
-    // if (err.message === "jwt expired" && getCookie("refreshToken")) {
-    //   await updateToken();
-    //   return getUserData();
-    // }
+  } catch (err: any) {
+    if (err.message === "jwt expired" && getCookie("refreshToken")) {
+      await updateToken();
+      return getUserData();
+    }
     if (err instanceof Error && err.message === "jwt expired" && getCookie("refreshToken")) {
       await updateToken();
       return getUserData();

@@ -1,10 +1,9 @@
-import { useSelector } from "react-redux";
 import styles from "./order-details.module.css";
+import { useAppSelector } from "../../services/store";
 
 const OrderDetails = () => {
- // дописать после птипизации Redux
- // @ts-ignore
-  const orderNumber = useSelector((state) => state.orderDetails.orderNumber);
+  const orderNumber = useAppSelector((state) => state.orderDetails.orderNumber);
+
   return (
     <section className={`${styles.conteiner}`}>
       <h3 className={`${styles.id} text text_type_digits-large`}>

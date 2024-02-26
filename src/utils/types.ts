@@ -2,11 +2,14 @@ export type TUserData = {
   name: string;
   email: string;
   password: string;
-  token?: string;
+  accessToken?: string;
+  success?: boolean;
+  user?: any;
+  refreshToken?: string;
 }
 
 export type TIngredient = {
-  _id: string;
+  _id: string
   name: string;
   type: string;
   proteins: number;
@@ -20,6 +23,8 @@ export type TIngredient = {
   __v?: number;
   count?: number,
   id?: string;
+  key?: string,
+  createdAt: string;
 };
 
 export type TOrder = {
@@ -27,4 +32,7 @@ export type TOrder = {
   createdAt: string;
   name: string;
   ingredients: string[];
+  status: string;
+  _id: string;
+  orders: any;
 };

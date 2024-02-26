@@ -1,5 +1,4 @@
 import { useState, useEffect, ChangeEvent, FormEvent } from "react";
-import { useDispatch, useSelector } from "react-redux";
 import styles from "./profile-form.module.css";
 import {
   EmailInput,
@@ -9,16 +8,11 @@ import {
 } from "@ya.praktikum/react-developer-burger-ui-components";
 import { fetchUpdateUser, getUser } from "../../services/authSlice";
 import { TUserData } from "../../utils/types";
-
-// type TUserData = {
-//   name: string;
-//   email: string;
-//   password: string;
-// }
+import { useAppDispatch, useAppSelector } from "../../services/store";
 
 function ProfileForm() {
-  const dispatch = useDispatch();
-  const userData = useSelector(getUser);
+  const dispatch = useAppDispatch();
+  const userData = useAppSelector(getUser);
 
   const [formData, setFormData] = useState<TUserData>({
     name: "",

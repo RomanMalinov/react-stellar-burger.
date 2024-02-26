@@ -1,48 +1,42 @@
 import { Link, useLocation } from "react-router-dom";
 import { useMemo } from "react";
-import { useSelector } from "react-redux";
 import {
   FormattedDate,
   CurrencyIcon,
 } from "@ya.praktikum/react-developer-burger-ui-components";
 import styles from "./order-card-ingredient.module.css";
 import { TOrder, TIngredient } from "../../utils/types";
+import { useAppSelector } from "../../services/store";
 
 type TOrderCardIngredientProps = {
   orderData: TOrder;
 };
 
 function OrderCardIngredient({ orderData }: TOrderCardIngredientProps) {
+
   const location = useLocation();
+  const { ingredients } = useAppSelector((state) => state.ingredientList);
 
-   // дописать после птипизации Redux
- // @ts-ignore
-  const { ingredients } = useSelector((state) => state.ingredientList);
-
-  const orderIngredients = useMemo(() => orderData.ingredients.map(id => {
-    return ingredients.find((item: TIngredient)  => item._id === id) 
-}), [orderData.ingredients, ingredients]);
-
-  // const orderIngredients = useMemo(() => {
-  //   return orderData.ingredients
-  //     .map((id) => {
-  //       const ingredient = ingredients.find((item) => item._id === id);
-  //       return ingredient ? { ...ingredient } : null;
-  //     })
-  //     .filter(Boolean);
-  // }, [orderData.ingredients, ingredients]);
+  const orderIngredients = useMemo(() => {
+    return orderData.ingredients
+      .map((id) => {
+        const ingredient = ingredients.find((item) => item._id === id);
+        return ingredient ? { ...ingredient } as TIngredient : null;
+      })
+      .filter(Boolean);
+  }, [orderData.ingredients, ingredients]);
 
   const url = useMemo(() => {
     return location.pathname === "/feed"
       ? `/feed/${orderData.number}`
       : location.pathname === "/profile/orders"
-      ? `/profile/orders/${orderData.number}`
-      : "/";
+        ? `/profile/orders/${orderData.number}`
+        : "/";
   }, [location, orderData.number]);
 
   const calculateTotalPrice = useMemo(() => {
     return orderIngredients.reduce((total, ingredient) => {
-      return total + (ingredient.price || 0);
+      return total + (ingredient?.price || 0);
     }, 0);
   }, [orderIngredients]);
 
@@ -68,26 +62,28 @@ function OrderCardIngredient({ orderData }: TOrderCardIngredientProps) {
         <div className={styles.orderInfo}>
           <div className={styles.imgConteiner}>
             {orderIngredients.map((item, index) => {
-              if (index < 6) {
-                return (
-                  <div key={index}>
-                    <img className={styles.img} src={item.image} alt="img" />
-                    {index === 5 && extraItemsCount !== 0 && (
-                      <div className={styles.counter}>
-                        <p className="text text_type_digits-default">{`+${extraItemsCount}`}</p>
-                      </div>
-                    )}
-                  </div>
-                );
+              if (item) {
+                if (index < 6) {
+                  return (
+                    <div key={index}>
+                      <img className={styles.img} src={item.image} alt="img" />
+                      {index === 5 && extraItemsCount !== 0 && (
+                        <div className={styles.counter}>
+                          <p className="text text_type_digits-default">{`+${extraItemsCount}`}</p>
+                        </div>
+                      )}
+                    </div>
+                  );
+                }
+                return null;
               }
-              return null;
             })}
           </div>
           <div className={styles.conteinerPrice}>
             <p className="text text_type_digits-medium">
               {calculateTotalPrice}
             </p>
-            <CurrencyIcon  type='primary' />
+            <CurrencyIcon type='primary' />
           </div>
         </div>
       </div>
@@ -95,6 +91,5 @@ function OrderCardIngredient({ orderData }: TOrderCardIngredientProps) {
   );
 }
 
-
-
 export default OrderCardIngredient;
+

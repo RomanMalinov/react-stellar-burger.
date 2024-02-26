@@ -28,8 +28,7 @@ const AppHeader = () => {
           <NavLink
             to={"/feed"}
             className={({ isActive }) =>
-              `${styles.link} text text_type_main-small ${
-                isActive ? styles.headerActive : ""
+              `${styles.link} text text_type_main-small ${isActive ? styles.headerActive : ""
               }`
             }
           >
@@ -46,8 +45,7 @@ const AppHeader = () => {
       <NavLink
         to={"/profile"}
         className={({ isActive }) =>
-          `${styles.link} text text_type_main-small ${
-            isActive ? styles.headerActive : ""
+          `${styles.link} text text_type_main-small ${isActive ? styles.headerActive : ""
           }`
         }
       >

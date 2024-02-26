@@ -11,9 +11,8 @@ function CommonRoute({ element }: CommonRouteProps): JSX.Element {
   const user = useSelector(getUser);
 
   if (!user || !user.email) return element;
-
-    return <Navigate to="/" replace />;
-  }
+  return <Navigate to="/" replace />;
+}
 
 CommonRoute.propTypes = {
   element: PropTypes.element.isRequired,
