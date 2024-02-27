@@ -1,0 +1,9 @@
+.orders {
+  margin-top: 36px;
+  height: 100vh;
+  overflow-y: scroll;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  overflow-x: hidden;
+}

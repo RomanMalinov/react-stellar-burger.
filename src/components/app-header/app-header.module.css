@@ -1,40 +1,48 @@
 .header {
-  margin: 16px auto 16px auto;
+  margin: 40px auto 40px auto;
+  padding: 0 0 0 0;
   width: 1280px;
   display: flex;
   align-items: center;
   padding: 16px 0;
-  justify-content: space-around;
+  justify-content: space-between;
+  background-color: #1c1c21;
+}
+
+.conteiner {
+  display: flex;
 }
 
 .nav {
+  margin-right: 135px;
   display: flex;
   flex-direction: row;
   gap: 48px;
 }
 
 .link {
-  /* font-family: JetBrains Mono;
-  font-size: 16px;
-  font-style: normal;
-  font-weight: 400;
-  line-height: 24px; */
-  outline: 2p red solid;
   align-items: center;
   display: flex;
   align-items: center;
   cursor: pointer;
+  text-decoration: none;
+  gap: 8px;
 }
 
 .text {
   margin-left: 8px;
 }
 
-.icon {
-  width:  100px;
+.headerActive {
+  color: #f2f2f3;
 }
-/* .logo {
-  border: 2px solid red;
-  margin-left: 132px;
 
-} */
+.link:hover {
+  transition: 1s;
+  opacity: 0.6;
+}
+
+.logo:hover {
+  transition: 1s;
+  opacity: 0.6;
+}
