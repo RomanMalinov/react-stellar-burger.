@@ -8,12 +8,11 @@ import styles from "./order-info.module.css";
 import { fetchSelectedOrderData } from "../../services/orderDetailsSlice";
 import { useAppDispatch, useAppSelector } from "../../services/store";
 import { TIngredient } from "../../utils/types";
-import { RootState } from "../../services/store";
 
 function OrderInfo() {
   const dispatch = useAppDispatch();
   const { number } = useParams();
-  const { ingredients } = useAppSelector((state: RootState) => state.ingredientList);
+  const { ingredients } = useAppSelector((state) => state.ingredientList);
 
   useEffect(() => {
     if (number) {
@@ -21,7 +20,7 @@ function OrderInfo() {
     }
   }, [dispatch, number]);
 
-  const order = useAppSelector((state: RootState) => {
+  const order = useAppSelector((state) => {
     if (number) {
       const orderNumber = parseInt(number, 10);
       let order = state.feed.orders.find((order) => parseInt(order.number, 10) === orderNumber);

@@ -12,7 +12,9 @@ const OrderDetails = () => {
       <p className={`${styles.title} text text_type_main-medium`}>
         идентификатор заказа
       </p>
-      <div className={`${styles.img}`}></div>
+      <div className={`${styles.imgWrapper}`}>
+        <div className={`${styles.img}`}></div>
+      </div>
       <p className={`${styles.textOrder} text text_type_main-smal`}>
         Ваш заказ начали готовить
       </p>

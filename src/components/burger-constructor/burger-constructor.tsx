@@ -8,16 +8,13 @@ import { getOrder } from "../../utils/api";
 import { useDrop } from "react-dnd";
 import { addIngredient } from "../../services/constructorIngedientSlice";
 import { addBuns } from "../../services/constructorIngedientSlice";
-import { RootState } from "../../services/store";
 import { TIngredient } from "../../utils/types";
 import { useAppDispatch, useAppSelector } from "../../services/store";
 
 const BurgerConstructor = () => {
 
-  const burgerIngredients = (state: RootState) => state.constructorIngedient.ingredients;
-  const burgertBun = (state: RootState) => state.constructorIngedient.buns;
-  const ingredients = useAppSelector(burgerIngredients);
-  const bun = useAppSelector(burgertBun);
+  const ingredients = useAppSelector((state) => state.constructorIngedient.ingredients);;
+  const bun = useAppSelector((state) => state.constructorIngedient.buns);
 
   const allSum = useMemo(() => {
     const bunsSum = bun ? bun.price * 2 : 0;

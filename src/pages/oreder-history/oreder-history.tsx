@@ -4,11 +4,10 @@ import OrderCardIngredient from "../../components/order-card-ingredient/order-ca
 import styles from "./order-history.module.css";
 import { getCookie } from "../../utils/cookie";
 import { useAppDispatch, useAppSelector } from "../../services/store";
-import { RootState } from "../../services/store";
 
 function OrderHistory() {
   const dispatch = useAppDispatch();
-  const { orders } = useAppSelector((state: RootState) => state.feed);
+  const { orders } = useAppSelector((state) => state.feed);
 
   useEffect(() => {
     dispatch(

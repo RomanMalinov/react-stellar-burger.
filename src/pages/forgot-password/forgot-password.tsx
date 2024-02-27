@@ -7,7 +7,7 @@ import {
   EmailInput,
   Button,
 } from "@ya.praktikum/react-developer-burger-ui-components";
-import { useAppDispatch, useAppSelector } from "../../services/store";
+import { useAppDispatch } from "../../services/store";
 
 
 function FogotPassword() {

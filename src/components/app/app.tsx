@@ -1,6 +1,5 @@
 import { useEffect } from "react";
 import { Routes, Route, useLocation, useNavigate } from "react-router-dom";
-import { useDispatch, useSelector } from "react-redux";
 import AppHeader from "../app-header/app-header";
 import Home from "../../pages/home/home";
 import Notfoundpage from "../../pages/not-found-page/not-found-page";

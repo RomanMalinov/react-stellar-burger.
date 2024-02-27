@@ -1,14 +1,13 @@
 import { getUser } from "../services/authSlice";
-import { useSelector } from "react-redux";
+import { useAppSelector } from "../services/store";
 import { Navigate, useLocation } from "react-router-dom";
-import PropTypes from "prop-types";
 
 type ProtectedRouteProps = {
   element: JSX.Element
 };
 
 function ProtectedRoute({ element }: ProtectedRouteProps): JSX.Element {
-  const user = useSelector(getUser);
+  const user = useAppSelector(getUser);
   const location = useLocation();
 
   if (!user) {
@@ -21,8 +20,5 @@ function ProtectedRoute({ element }: ProtectedRouteProps): JSX.Element {
     <Navigate to="/login" state={{ from: location }} replace />
   );
 }
-ProtectedRoute.propTypes = {
-  element: PropTypes.element.isRequired,
-};
 
 export default ProtectedRoute;
